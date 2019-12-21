@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
+{% block head %}
+{{ super() }}
+	<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
+	{% if article.description %}
+	<meta name="description" content="{{ article.description }}">
+	{% endif %}
+	{% for tag in article.tags %}
+	<meta name="tags" content="{{ tag }}">
+	{% endfor %}
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+	<article role="article">
+		<header>
+			<h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1><!--
+			--><time datetime="{{ article.date.isoformat() }}">Le {{ article.locale_date }}</time><!--
+			--><p class="category">{{ article.category }}</p>
+		</header>
+		<div class="content">
+			{{ article.content }}
+		</div>
+	</article>
+</div>
+{% endblock content %}
