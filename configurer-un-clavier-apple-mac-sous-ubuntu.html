@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<title>Geoffrey Guéret - Configurer un clavier Apple Mac sous Ubuntu</title>
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		<link rel="stylesheet" href="https://geoffrey.gueret.tech/theme/style.min.css?84285638" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat%7CUbuntu+Mono&display=swap">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+
+	<link rel="canonical" href="https://geoffrey.gueret.tech/configurer-un-clavier-apple-mac-sous-ubuntu.html">
+</head>
+<body role="document">
+	<div id="page">
+		<header id="header">
+			<div class="container">
+				<h1><a href="https://geoffrey.gueret.tech/">Geoffrey Guéret <strong></strong></a></h1>
+				<p id="sentence">french fries and <span id="buzzword">tech</span></p>
+				<nav role="navigation">
+					<ul>
+						<li><a class="active" href="https://geoffrey.gueret.tech/" title="blog posts">Blog</a></li>
+						<li><a href="https://geoffrey.gueret.tech/about/">A propos</a></li>
+						<li><a href="https://geoffrey.gueret.tech/projects/">Projets</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="main" role="main">
+<div class="container">
+	<article role="article">
+		<header>
+			<h1><a href="https://geoffrey.gueret.tech/configurer-un-clavier-apple-mac-sous-ubuntu.html">Configurer un clavier Apple Mac sous Ubuntu</a></h1><!--
+			--><time datetime="2018-12-12T23:14:00+01:00">Le Mer 12 décembre 2018</time><!--
+			--><p class="category">OSes</p>
+		</header>
+		<div class="content">
+			<p>Le clavier Mac n'est toujours pas reconnu correctement dans la version 18.04 LTS d'Ubuntu et ça dure depuis un moment déjà.
+En cause, le module <code>hid_apple</code> du kernel GNU/Linux qui ne distingue pas correctement la disposition du clavier, ça ne touche pas que Ubuntu mais bien l'ensemble des distributions.</p>
+<p>Ca entraine des problèmes bien génants, les touches sont inversées ou n'ont pas le comportement attendu.
+Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. Dans le cas d'une autre distribution, adapter la configuration de la <a href="#methode-de-saisie">méthode de saisie</a> par l'utilitaire le plus adapté. </p>
+<h2 id="methode-de-saisie">Méthode de saisie<a class="headerlink fas fa-link" href="#methode-de-saisie" title="Permanent link"></a></h2>
+<p>Configurer les paramètres de saisie de texte, soit avec l'utiltaire "Saisie de texte" / "Keyboard Layouts" ou directement via le terminal dans <code>/etc/default/keyboard</code> en y définissant les valeurs suivantes :</p>
+<div class="highlight"><pre><span></span><span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span>  <span class="c1"># Generic 105-key PC (intl.)</span>
+<span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span>    <span class="c1"># French</span>
+<span class="nv">XKBVARIANT</span><span class="o">=</span><span class="s2">&quot;mac&quot;</span>  <span class="c1"># French (Macintosh)</span>
+</pre></div>
+
+
+<p>Puis appliquer les changements :</p>
+<div class="highlight"><pre><span></span>sudo dpkg-reconfigure -f noninteractive keyboard-configuration
+</pre></div>
+
+
+<h2 id="disposition-des-touches">Disposition des touches<a class="headerlink fas fa-link" href="#disposition-des-touches" title="Permanent link"></a></h2>
+<p>En Europe, on utilise habituellement le standard ISO pour nos claviers. Mais là il faut le désactiver.</p>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">0</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/iso_layout
+</pre></div>
+
+
+<h2 id="invertion-des-touches-cmd-et-alt">Invertion des touches Cmd et Alt<a class="headerlink fas fa-link" href="#invertion-des-touches-cmd-et-alt" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">1</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/swap_opt_cmd
+</pre></div>
+
+
+<h2 id="comportement-des-touches-de-fonction">Comportement des touches de fonction<a class="headerlink fas fa-link" href="#comportement-des-touches-de-fonction" title="Permanent link"></a></h2>
+<ul>
+<li><strong>0</strong> - Désactive complètement la touche <code>fn</code>.</li>
+<li><strong>1</strong> - Activé par défaut. La touche <code>F8</code> déclenche l'action play/pause. <code>fn + F8</code> déclenche <code>F8</code>.</li>
+<li><strong>2</strong> - Désactivé par défaut. La touche <code>F8</code> déclenche <code>F8</code>. <code>fn + F8</code> déclenche l'action play/pause.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">2</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/fnmode
+</pre></div>
+
+
+<h2 id="persister-les-changements">Persister les changements<a class="headerlink fas fa-link" href="#persister-les-changements" title="Permanent link"></a></h2>
+<p>Pour que ces changements survivent au prochain reboot, il faut les persister dans modprobe et regénérer l'initramfs :</p>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> options hid_apple <span class="nv">iso_layout</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
+<span class="nb">echo</span> options hid_apple <span class="nv">swap_opt_cmd</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
+<span class="nb">echo</span> options hid_apple <span class="nv">fnmode</span><span class="o">=</span><span class="m">2</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
+
+sudo update-initramfs -u -k all
+</pre></div>
+		</div>
+	</article>
+</div>
+		</div>
+		<footer id="footer" role="contentinfo">
+			<p><small>&copy; Copyright 2019 - Geoffrey Guéret<br>Contenu généré avec <a href="https://blog.getpelican.com/">Pelican</a> et hébergé sur <a href="https://www.raspberrypi.org/">GitHub Pages</a></small></p>
+			<div class="social-icons">
+				<span><a href="https://www.linkedin.com/in/ggueret/" ><i style="color: #4875B4;" class="fab fa-linkedin fa-lg" title="Linkedin profile"></i></a></span>
+				<span><a href="https://github.com/ggueret" ><i style="color: #333;" class="fab fa-github fa-lg" title="GitHub profile"></i></a></span>
+			</div>
+			<div id="favmodel"></div>
+		</footer>
+	</div>
+	<script type="text/javascript" src="https://geoffrey.gueret.tech/theme/main.min.js?924f8b24"></script>
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</body>
+</html>

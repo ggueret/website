@@ -1,0 +1,262 @@
+/* Color palette from Tomorrow-Night theme (https://github.com/chriskempson/tomorrow-theme) */
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: 'Montserrat', serif;
+	font-size: 1.8rem;
+	line-height: 3.4rem;
+	color: #030303;
+	background-color: #f3f3f3;
+}
+
+::selection {
+	background: #efefef;
+}
+
+-moz-selection {
+	background: #efefef;
+}
+
+code {
+	border: 0.1rem solid #d6d6d6;
+	background-color: #fff;
+	border-radius: 0.2rem;
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+}
+
+pre {
+	font-family: 'Ubuntu Mono', monospace;
+	line-height: 2.6rem;
+}
+
+h1 {
+	font-size: 3rem;
+}
+
+a {
+	color: #4271ae;
+	text-decoration: none;
+}
+
+a.active, a.active:hover {
+	color: #030303;
+}
+
+a:hover {
+	color: #3e999f;
+}
+
+section {
+	text-align: center;
+}
+
+
+#page {}
+
+.container {
+	width: auto;
+	margin: 0 auto;
+	padding: 0 4rem;
+}
+
+
+/*_ Header ________________________________________________________________________*/
+
+#header {
+	background: linear-gradient(#efefef, #f3f3f3);
+	padding: 4rem 0;
+}
+
+#header h1 {
+	display: inline;
+/*	vertical-align: top;*/
+	font-size: 3rem;
+	line-height: 2rem;
+	font-weight: bold;
+}
+
+#header h1 img {
+	float: left;
+	width: 100px;
+	height: 100px;
+}
+
+#header h1 a, #header p {
+	color: #1d1f21;
+}
+
+#header h1 a {
+	text-shadow: 0.1rem 0.1rem 0.1rem #f3f3f3;
+}
+
+#header p {
+	display: inline;
+	font-size: 1.6rem;
+	line-height: 2rem;
+}
+
+#header nav {
+	font-size: 2rem;
+}
+#header nav, #header nav ul {
+/*	display: inline; useful for some browser ?*/
+float: right;
+	margin: 0;
+}
+
+#header nav ul {
+	padding-left: 2rem; /* responsive */
+}
+#header nav ul li {
+	display: inline;
+	list-style: none;
+	padding-left: 1rem;
+/*	font-weight: bold;*/
+}
+
+#header nav li + li:before {
+	content: "|";
+	color: #d6d6d6;
+	padding-right: 1rem;
+}
+
+
+/*_ Main ________________________________________________________________________*/
+
+#main {
+	padding-top: 2rem;
+	text-align: justify;
+}
+
+
+/*_ Footer ________________________________________________________________________*/
+#footer .social-icons span + span {
+	margin-left: 0.4rem;
+}
+
+#footer {
+	position: relative;
+	color: #8e908c;
+	text-align: center;
+	margin-top: 7rem;
+	margin-bottom: 4rem;
+	padding: 1rem 0;
+	font-size: 1.6rem;
+	line-height: 2.4rem;
+}
+
+#footer a {
+	color: #8e908c;
+	text-decoration: underline;
+	text-decoration-color: #4271ae;
+}
+
+#footer a:hover {
+	color: #4271ae;
+	text-decoration-color: #8e908c;
+}
+
+
+/*_ Articles ________________________________________________________________________*/
+
+article header h1 {
+	font-size: 2rem;
+}
+
+article h1, article p.category {
+	display: inline;
+}
+
+article time {
+	font-size: 1.4rem;
+	color: #8e908c;
+	margin-left: 1rem;
+}
+
+article > time::after {
+	content: "~";
+	padding: 0 0.6rem;
+	color: #d6d6d6;
+	font-weight: bolder;
+}
+
+article > p.category:before {
+	content: "@";
+	padding: 0 0.6rem;
+	color: #d6d6d6;
+	font-weight: bolder;
+}
+
+article header > p.category::after {
+	content: "/";
+	padding: 0 0.6rem;
+	color: #d6d6d6;
+}
+article > h1, article {
+	font-size: 1.8rem;
+}
+
+article header p.category {
+	font-weight: bold;
+	float: left;
+	margin: 0;
+}
+
+dt {
+	font-weight: bold;
+}
+
+/* syntax highlighting */
+.highlight {
+	border: 0.1rem solid #d6d6d6;
+	border-radius: 0.4rem;
+	overflow: auto;
+	padding: 0 1rem;
+}
+
+/* permalinks */
+.headerlink {
+	color: #dfdfdf;
+	margin-left: 0.3em;
+}
+
+
+/*_ Responsiveness ________________________________________________________________________*/
+
+@media all and (min-width: 1024px) {
+	.container {
+		width: 96rem;
+	}
+}
+
+@media all and (max-width: 1023px) {
+	article p.category {
+		display: none;
+	}
+}
+
+@media all and (max-width: 1023px) {
+	article p.category {
+		display: none;
+	}
+}
+
+@media all and (max-width: 767px) {
+	article time {
+		display: none;
+	}
+}
+
+@media all and (max-width: 500px) {
+	#header p {
+		display: none;
+	}
+	#header h1 {
+		display: block;
+		text-align: right;
+		width: 100%;
+	}
+}
