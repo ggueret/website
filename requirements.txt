@@ -4,3 +4,4 @@ webassets==0.12.1
 pelican==4.0.1
 cssmin==0.2.0
 jsmin==2.2.2
+ghp-import==0.5.5
