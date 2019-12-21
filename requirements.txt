@@ -1,0 +1,6 @@
+html5validator==0.3.1
+webassets==0.12.1
+-e git://github.com/ggueret/markdown.git#egg=Markdown
+pelican==4.0.1
+cssmin==0.2.0
+jsmin==2.2.2

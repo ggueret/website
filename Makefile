@@ -71,5 +71,7 @@ endif
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
+validate:
+	html5validator --root $(OUTPUTDIR) --also-check-css
 
-.PHONY: html help clean regenerate serve serve-global devserver stopserver publish 
+.PHONY: html help clean regenerate serve serve-global devserver stopserver publish validate
