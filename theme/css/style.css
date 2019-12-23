@@ -255,4 +255,7 @@ dt {
 	#header p {
 		display: none;
 	}
+	section {
+		text-align: left;
+	}
 }
