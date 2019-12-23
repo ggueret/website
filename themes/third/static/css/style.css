@@ -71,7 +71,7 @@ section {
 
 #header {
 	background: linear-gradient(#efefef, #fafbfc);
-	padding: 4rem 0;
+	padding: 3rem 0;
 }
 
 #header h1 {
@@ -242,12 +242,6 @@ dt {
 	}
 }
 
-@media all and (max-width: 1023px) {
-	article p.category {
-		display: none;
-	}
-}
-
 @media all and (max-width: 767px) {
 	article time {
 		display: none;
@@ -255,12 +249,10 @@ dt {
 }
 
 @media all and (max-width: 500px) {
+	#header {
+		text-align: right;
+	}
 	#header p {
 		display: none;
-	}
-	#header h1 {
-		display: block;
-		text-align: right;
-		width: 100%;
 	}
 }
