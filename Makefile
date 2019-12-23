@@ -9,6 +9,7 @@ CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
 GITHUB_PAGES_BRANCH=gh-pages
+GITHUB_PAGES_CNAME=geoffrey.gueret.tech
 
 
 DEBUG ?= 0
@@ -77,7 +78,7 @@ validate: publish
 	html5validator --root $(OUTPUTDIR) --also-check-css
 
 github: publish
-	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
+	ghp-import -n -c $(GITHUB_PAGES_CNAME) -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish github validate
