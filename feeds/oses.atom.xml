@@ -6,26 +6,26 @@ En cause, le module &lt;code&gt;hid_apple&lt;/code&gt; du kernel GNU/Linux qui n
 Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. Dans le cas d'une autre distribution, adapter la configuration de la &lt;a href="#methode-de-saisie"&gt;méthode de saisie&lt;/a&gt; par l'utilitaire le plus adapté. &lt;/p&gt;
 &lt;h2 id="methode-de-saisie"&gt;Méthode de saisie&lt;a class="headerlink fas fa-link" href="#methode-de-saisie" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Configurer les paramètres de saisie de texte, soit avec l'utiltaire "Saisie de texte" / "Keyboard Layouts" ou directement via le terminal dans &lt;code&gt;/etc/default/keyboard&lt;/code&gt; en y définissant les valeurs suivantes :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;XKBMODEL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pc105&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# Generic 105-key PC (intl.)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;XKBMODEL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pc105&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# Generic 105-key PC (intl.)&lt;/span&gt;
 &lt;span class="nv"&gt;XKBLAYOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fr&amp;quot;&lt;/span&gt;    &lt;span class="c1"&gt;# French&lt;/span&gt;
 &lt;span class="nv"&gt;XKBVARIANT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mac&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# French (Macintosh)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Puis appliquer les changements :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo dpkg-reconfigure -f noninteractive keyboard-configuration
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo dpkg-reconfigure -f noninteractive keyboard-configuration
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2 id="disposition-des-touches"&gt;Disposition des touches&lt;a class="headerlink fas fa-link" href="#disposition-des-touches" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;En Europe, on utilise habituellement le standard ISO pour nos claviers. Mais là il faut le désactiver.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /sys/module/hid_apple/parameters/iso_layout
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /sys/module/hid_apple/parameters/iso_layout
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2 id="invertion-des-touches-cmd-et-alt"&gt;Invertion des touches Cmd et Alt&lt;a class="headerlink fas fa-link" href="#invertion-des-touches-cmd-et-alt" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /sys/module/hid_apple/parameters/swap_opt_cmd
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /sys/module/hid_apple/parameters/swap_opt_cmd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2 id="comportement-des-touches-de-fonction"&gt;Comportement des touches de fonction&lt;a class="headerlink fas fa-link" href="#comportement-des-touches-de-fonction" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
@@ -34,15 +34,15 @@ Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. 
 &lt;li&gt;&lt;strong&gt;1&lt;/strong&gt; - Activé par défaut. La touche &lt;code&gt;F8&lt;/code&gt; déclenche l'action play/pause. &lt;code&gt;fn + F8&lt;/code&gt; déclenche &lt;code&gt;F8&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;2&lt;/strong&gt; - Désactivé par défaut. La touche &lt;code&gt;F8&lt;/code&gt; déclenche &lt;code&gt;F8&lt;/code&gt;. &lt;code&gt;fn + F8&lt;/code&gt; déclenche l'action play/pause.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /sys/module/hid_apple/parameters/fnmode
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /sys/module/hid_apple/parameters/fnmode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2 id="persister-les-changements"&gt;Persister les changements&lt;a class="headerlink fas fa-link" href="#persister-les-changements" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Pour que ces changements survivent au prochain reboot, il faut les persister dans modprobe et regénérer l'initramfs :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; options hid_apple &lt;span class="nv"&gt;iso_layout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee -a /etc/modprobe.d/hid_apple.conf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; options hid_apple &lt;span class="nv"&gt;iso_layout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee -a /etc/modprobe.d/hid_apple.conf
 &lt;span class="nb"&gt;echo&lt;/span&gt; options hid_apple &lt;span class="nv"&gt;swap_opt_cmd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee -a /etc/modprobe.d/hid_apple.conf
 &lt;span class="nb"&gt;echo&lt;/span&gt; options hid_apple &lt;span class="nv"&gt;fnmode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee -a /etc/modprobe.d/hid_apple.conf
 
 sudo update-initramfs -u -k all
-&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="OSes"></category></entry></feed>
