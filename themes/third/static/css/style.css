@@ -8,7 +8,7 @@ body {
 	font-size: 1.8rem;
 	line-height: 3.4rem;
 	color: #030303;
-	background-color: #f3f3f3;
+	background-color: #fafbfc;
 }
 
 ::selection {
@@ -20,6 +20,8 @@ body {
 }
 
 code {
+	color: #cc6666;
+	padding: 0.4rem;
 	border: 0.1rem solid #d6d6d6;
 	background-color: #fff;
 	border-radius: 0.2rem;
@@ -59,14 +61,14 @@ section {
 .container {
 	width: auto;
 	margin: 0 auto;
-	padding: 0 4rem;
+	padding: 0 3rem;
 }
 
 
 /*_ Header ________________________________________________________________________*/
 
 #header {
-	background: linear-gradient(#efefef, #f3f3f3);
+	background: linear-gradient(#efefef, #fafbfc);
 	padding: 4rem 0;
 }
 
