@@ -17,13 +17,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		typeSpeed: 30,
 		loop: false,
 		showCursor: true,
-		onComplete: setTimeout(function(){
+		onComplete: function() {
 			document.querySelectorAll(".typed-cursor")[0].style.display = "none";
-
-			setTimeout(function(){
-				container.textContent += ".";
-			}, 30)();
-
-		}, 1000)
+			window.setTimeout(function(){container.textContent += "."}, 333);
+		}
 	});
 });
