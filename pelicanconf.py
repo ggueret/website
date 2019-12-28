@@ -67,8 +67,17 @@ MARKDOWN = {
     "output_format": "html5",
 }
 
-PLUGINS = ["plugins.assets"]
+PLUGINS = ["plugins.assets", "plugins.sitemap"]
 
 ARTICLE_URL = ARTICLE_SAVE_AS = "{slug}.html"
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
+
+SITEMAP = {
+    "format": "xml",
+    "changefreqs": {
+        "articles": "weekly",
+        "indexes": "daily",
+        "pages": "monthly"
+    }
+}
