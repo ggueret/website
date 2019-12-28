@@ -73,6 +73,9 @@ ARTICLE_URL = ARTICLE_SAVE_AS = "{slug}.html"
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
 
+# Disabled pages
+AUTHOR_SAVE_AS = CATEGORY_SAVE_AS = TAGS_SAVE_AS = TAG_SAVE_AS = ""
+
 SITEMAP = {
     "format": "xml",
     "changefreqs": {
@@ -81,3 +84,6 @@ SITEMAP = {
         "pages": "monthly"
     }
 }
+
+DIRECT_TEMPLATES = ["index", "archives"]
+DELETE_OUTPUT_DIRECTORY = True
