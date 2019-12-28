@@ -6,7 +6,7 @@ Je me nomme Geoffrey Guéret, j'ai 31 ans et je vis en France. Passionné par le
 J'ai commencé le développement avec PHP _3_ et les normes CSS _2_ / XHTML _1.0_ pour faire le site de mon équipe de [jeux video](https://fr.wikipedia.org/wiki/Day_of_Defeat:_Source) en 2005.
 Peu après, ce fût mon premier contact avec GNU/Linux pour auto-héberger notre serveur de jeux, c'est à ce moment que j'ai découvert et depuis adopté Debian et sa [philosophie](https://www.debian.org/devel/join/nm-step3).
 
-Issu de formations en alternance, j'ai quitté très tôt le cursus général. D'abord dans les métiers l'éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'ai pu aborder tôt le monde du travail et cette réalité motivante des problèmes à résoudre.
+Issu de formations en alternance, j'ai quitté très tôt le cursus général. D'abord dans les métiers de l'éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'ai pu aborder tôt le monde du travail et cette réalité motivante des problèmes à résoudre.
 
 J'ai adoré pratiquer le Python _2.7_ dans une société d'infogérence spécialisée dans l'hébergement Internet en 2011. Il m'accompagne depuis dans tous mes projets professionnels et personnels, s'adaptant aux différents contextes et cas d'usages en intégrant des paradigmes et modèles variés.
 
