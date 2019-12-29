@@ -67,14 +67,24 @@ MARKDOWN = {
     "output_format": "html5",
 }
 
-PLUGINS = ["plugins.assets", "plugins.sitemap"]
+PLUGIN_PATHS = ["plugins"]
+PLUGINS = ["assets", "sitemap"]
 
-ARTICLE_URL = ARTICLE_SAVE_AS = "{slug}.html"
+ARTICLE_URL = "{date:%Y}/{date:%m}/{date:%d}/{slug}/"
+ARTICLE_SAVE_AS = ARTICLE_URL + "index.html"
+DRAFT_URL = "drafts/{slug}/"
+DRAFT_SAVE_AS = DRAFT_URL + "index.html"
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
-
-# Disabled pages
-AUTHOR_SAVE_AS = CATEGORY_SAVE_AS = TAGS_SAVE_AS = TAG_SAVE_AS = ""
+DRAFT_PAGE_URL = "drafts/pages/{slug}/"
+DRAFT_PAGE_SAVE_AS = DRAFT_PAGE_URL + "index.html"
+AUTHOR_SAVE_AS = CATEGORY_SAVE_AS = ""
+TAG_URL = "tags/{slug}/"
+TAG_SAVE_AS = "tags/{slug}/index.html"
+ARCHIVES_URL = "archives/"
+ARCHIVES_SAVE_AS = ARCHIVES_URL + "index.html"
+TAGS_URL = "tags/"
+TAGS_SAVE_AS = TAGS_URL + "index.html"
 
 SITEMAP = {
     "format": "xml",
@@ -85,5 +95,6 @@ SITEMAP = {
     }
 }
 
-DIRECT_TEMPLATES = ["index", "archives"]
+# Disable "authors" and "categories" indexes pages
+DIRECT_TEMPLATES = ["index", "tags", "archives"]
 DELETE_OUTPUT_DIRECTORY = True
