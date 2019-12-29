@@ -57,6 +57,14 @@ section {
 	text-align: center;
 }
 
+ul.inline li {
+	display: inline;
+	padding: 0.6rem;
+}
+
+.text-muted {
+	color: #8e908c;
+}
 
 #page {}
 

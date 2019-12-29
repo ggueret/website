@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} - Blog articles tagged "{{ tag }}"{% endblock %}
+{% block content %}
+<div class="container">
+<section>
+	<h1>Articles taggés <span class="text-muted">"{{ tag }}"</span></h1>
+	{% for article in articles_page.object_list %}
+	<article>
+		<time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
+		--><h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+	</article>
+	{% endfor %}
+</section>
+</div>
+{% endblock content %}
