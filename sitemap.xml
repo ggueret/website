@@ -5,34 +5,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://geoffrey.gueret.tech/</loc>
-<lastmod>2019-12-28T18:08:26-00:00</lastmod>
+<lastmod>2019-12-30T00:15:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/archives.html</loc>
-<lastmod>2019-12-28T18:08:26-00:00</lastmod>
+<loc>https://geoffrey.gueret.tech/tags/</loc>
+<lastmod>2019-12-30T00:15:54-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://geoffrey.gueret.tech/archives/</loc>
+<lastmod>2019-12-30T00:15:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://geoffrey.gueret.tech/about/</loc>
-<lastmod>2019-12-28T18:08:26-00:00</lastmod>
+<lastmod>2019-12-30T00:15:54-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://geoffrey.gueret.tech/projects/</loc>
-<lastmod>2019-12-28T18:08:26-00:00</lastmod>
+<lastmod>2019-12-30T00:15:54-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/configurer-un-clavier-apple-mac-sous-ubuntu.html</loc>
+<loc>https://geoffrey.gueret.tech/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</loc>
 <lastmod>2018-12-12T23:14:00+01:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
