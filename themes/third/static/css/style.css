@@ -66,6 +66,22 @@ ul.inline li {
 	color: #8e908c;
 }
 
+.crumb-golang::after {
+	content: "(Golang)";
+	margin-left: 0.3rem;
+	font-weight: lighter;
+	font-size: 75%;
+	font-style: italic;
+}
+
+.crumb-python::after {
+	content: "(Python)";
+	margin-left: 0.3rem;
+	font-weight: lighter;
+	font-size: 75%;
+	font-style: italic;
+}
+
 #page {}
 
 .container {
