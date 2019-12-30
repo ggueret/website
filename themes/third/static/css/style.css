@@ -272,7 +272,12 @@ dt {
 	#header p {
 		display: none;
 	}
-	section {
+	section, section article {
 		text-align: left;
+	}
+	#footer .social-icons svg {
+		width: 3rem;
+		height: 3rem;
+
 	}
 }
