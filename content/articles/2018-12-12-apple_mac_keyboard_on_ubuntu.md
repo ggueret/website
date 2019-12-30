@@ -1,6 +1,7 @@
 Title: Configurer un clavier Apple Mac sous Ubuntu
 Date: 2018-12-12 23:14
 Category: OSes
+Description: Configuration d'un clavier filaire de Mac (avec pavé numérique) sous Ubuntu 18.04 LTS.
 
 Le clavier Mac n'est toujours pas reconnu correctement dans la version 18.04 LTS d'Ubuntu et ça dure depuis un moment déjà.
 En cause, le module `hid_apple` du kernel GNU/Linux qui ne distingue pas correctement la disposition du clavier, ça ne touche pas que Ubuntu mais bien l'ensemble des distributions.

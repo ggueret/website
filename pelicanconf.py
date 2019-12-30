@@ -5,6 +5,9 @@ from __future__ import unicode_literals
 AUTHOR = 'Geoffrey Guéret'
 SITENAME = 'Geoffrey Guéret'
 SITEURL = ''
+SITEDESC = "Site personnel d'un codeur autrefois devops."
+# ensure correct length of the site description meta for mobile devices
+assert len(SITEDESC) <= 120
 
 PATH = 'content'
 

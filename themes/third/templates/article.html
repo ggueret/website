@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
+{% block description %}{{ article.description or super() }}{% endblock %}
 {% block head %}
 {{ super() }}
 	<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
-	{% if article.description %}
-	<meta name="description" content="{{ article.description }}">
-	{% endif %}
 	{% for tag in article.tags %}
 	<meta name="tags" content="{{ tag }}">
 	{% endfor %}
