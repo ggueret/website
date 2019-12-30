@@ -9,14 +9,13 @@
 		gtag('config', 'UA-138276383-2');
 	</script>
 	<meta charset="utf-8" />
+	<meta name="description" content="Configuration d'un clavier filaire de Mac (avec pavé numérique) sous Ubuntu 18.04 LTS.">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	<title>Geoffrey Guéret - Configurer un clavier Apple Mac sous Ubuntu</title>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-		<link rel="stylesheet" href="https://geoffrey.gueret.tech/theme/style.min.css?95ee73f0" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500%7CUbuntu+Mono&display=swap">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://geoffrey.gueret.tech/theme/style.min.css?a1265203" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -53,7 +52,7 @@
 En cause, le module <code>hid_apple</code> du kernel GNU/Linux qui ne distingue pas correctement la disposition du clavier, ça ne touche pas que Ubuntu mais bien l'ensemble des distributions.</p>
 <p>Ca entraine des problèmes bien génants, les touches sont inversées ou n'ont pas le comportement attendu.
 Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. Dans le cas d'une autre distribution, adapter la configuration de la <a href="#methode-de-saisie">méthode de saisie</a> par l'utilitaire le plus adapté. </p>
-<h2 id="methode-de-saisie">Méthode de saisie<a class="headerlink fas fa-link" href="#methode-de-saisie" title="Permanent link"></a></h2>
+<h2 id="methode-de-saisie">Méthode de saisie<a class="headerlink" href="#methode-de-saisie" title="Permanent link"></a></h2>
 <p>Configurer les paramètres de saisie de texte, soit avec l'utiltaire "Saisie de texte" / "Keyboard Layouts" ou directement via le terminal dans <code>/etc/default/keyboard</code> en y définissant les valeurs suivantes :</p>
 <div class="highlight"><pre><span></span><code><span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span>  <span class="c1"># Generic 105-key PC (intl.)</span>
 <span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span>    <span class="c1"># French</span>
@@ -66,18 +65,18 @@ Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. 
 </code></pre></div>
 
 
-<h2 id="disposition-des-touches">Disposition des touches<a class="headerlink fas fa-link" href="#disposition-des-touches" title="Permanent link"></a></h2>
+<h2 id="disposition-des-touches">Disposition des touches<a class="headerlink" href="#disposition-des-touches" title="Permanent link"></a></h2>
 <p>En Europe, on utilise habituellement le standard ISO pour nos claviers. Mais là il faut le désactiver.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">0</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/iso_layout
 </code></pre></div>
 
 
-<h2 id="invertion-des-touches-cmd-et-alt">Invertion des touches Cmd et Alt<a class="headerlink fas fa-link" href="#invertion-des-touches-cmd-et-alt" title="Permanent link"></a></h2>
+<h2 id="invertion-des-touches-cmd-et-alt">Invertion des touches Cmd et Alt<a class="headerlink" href="#invertion-des-touches-cmd-et-alt" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">1</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/swap_opt_cmd
 </code></pre></div>
 
 
-<h2 id="comportement-des-touches-de-fonction">Comportement des touches de fonction<a class="headerlink fas fa-link" href="#comportement-des-touches-de-fonction" title="Permanent link"></a></h2>
+<h2 id="comportement-des-touches-de-fonction">Comportement des touches de fonction<a class="headerlink" href="#comportement-des-touches-de-fonction" title="Permanent link"></a></h2>
 <ul>
 <li><strong>0</strong> - Désactive complètement la touche <code>fn</code>.</li>
 <li><strong>1</strong> - Activé par défaut. La touche <code>F8</code> déclenche l'action play/pause. <code>fn + F8</code> déclenche <code>F8</code>.</li>
@@ -87,7 +86,7 @@ Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. 
 </code></pre></div>
 
 
-<h2 id="persister-les-changements">Persister les changements<a class="headerlink fas fa-link" href="#persister-les-changements" title="Permanent link"></a></h2>
+<h2 id="persister-les-changements">Persister les changements<a class="headerlink" href="#persister-les-changements" title="Permanent link"></a></h2>
 <p>Pour que ces changements survivent au prochain reboot, il faut les persister dans modprobe et regénérer l'initramfs :</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> options hid_apple <span class="nv">iso_layout</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
 <span class="nb">echo</span> options hid_apple <span class="nv">swap_opt_cmd</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
@@ -100,10 +99,10 @@ sudo update-initramfs -u -k all
 </div>
 		</div>
 		<footer id="footer" role="contentinfo">
-			<p><small>&copy; Copyright 2019 - Geoffrey Guéret<br>Contenu généré avec <a href="https://blog.getpelican.com/">Pelican</a> et hébergé sur <a href="https://www.raspberrypi.org/">GitHub Pages</a></small></p>
+			<p><small>&copy; Copyright 2019 - Geoffrey Guéret<br>Contenu généré avec <a href="https://blog.getpelican.com/">Pelican</a> et hébergé sur <a href="https://pages.github.com/">GitHub Pages</a></small></p>
 			<div class="social-icons">
-				<span><a href="https://www.linkedin.com/in/ggueret/" ><i style="color: #4875B4;" class="fab fa-linkedin fa-lg" title="Linkedin profile"></i></a></span>
-				<span><a href="https://github.com/ggueret" ><i style="color: #333;" class="fab fa-github fa-lg" title="GitHub profile"></i></a></span>
+				<span><a href="https://www.linkedin.com/in/ggueret/" title="LinkedIn"><svg width="32" height="32" style="fill: #4875B4;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></span>
+				<span><a href="https://github.com/ggueret" title="GitHub"><svg style="fill: #333;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></span>
 			</div>
 			<div id="favmodel"></div>
 		</footer>
