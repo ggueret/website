@@ -145,6 +145,11 @@ float: right;
 
 
 /*_ Footer ________________________________________________________________________*/
+#footer .social-icons svg {
+	width: 2rem;
+	height: 2rem;
+}
+
 #footer .social-icons span + span {
 	margin-left: 0.4rem;
 }
@@ -233,6 +238,10 @@ dt {
 .headerlink {
 	color: #dfdfdf;
 	margin-left: 0.3em;
+}
+
+.headerlink::after {
+	content: "#";
 }
 
 

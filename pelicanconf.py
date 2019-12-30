@@ -62,7 +62,7 @@ MARKDOWN = {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.extra": {},
         "markdown.extensions.meta": {},
-        "markdown.extensions.toc": {"permalink": "", "permalink_class": "headerlink fas fa-link"}
+        "markdown.extensions.toc": {"permalink": "", "permalink_class": "headerlink"}
     },
     "output_format": "html5",
 }
