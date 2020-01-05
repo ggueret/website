@@ -20,4 +20,4 @@ Vous pouvez me trouver sur [GitHub](https://github.com/ggueret), [Bitbucket](htt
 
 ### Pour un futur projet
 
-Actuellement en poste chez [UbiCast](https://www.ubicast.eu/), un projet ou du conseil en tant que freelance est envisageable.
+Actuellement en poste chez [UbiCast](https://www.ubicast.eu/), un projet ou du conseil en tant que [freelance](https://www.malt.fr/profile/geoffreygueret) est envisageable.
