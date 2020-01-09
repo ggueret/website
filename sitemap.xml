@@ -4,49 +4,49 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://geoffrey.gueret.tech/</loc>
-<lastmod>2020-01-09T18:47:04-00:00</lastmod>
+<loc>https://geoffrey.gueret.org/</loc>
+<lastmod>2020-01-09T20:05:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/tags/</loc>
-<lastmod>2020-01-09T18:47:04-00:00</lastmod>
+<loc>https://geoffrey.gueret.org/tags/</loc>
+<lastmod>2020-01-09T20:05:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/archives/</loc>
-<lastmod>2020-01-09T18:47:04-00:00</lastmod>
+<loc>https://geoffrey.gueret.org/archives/</loc>
+<lastmod>2020-01-09T20:05:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/about/</loc>
-<lastmod>2020-01-09T18:47:04-00:00</lastmod>
+<loc>https://geoffrey.gueret.org/about/</loc>
+<lastmod>2020-01-09T20:05:22-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/projects/</loc>
-<lastmod>2020-01-09T18:47:04-00:00</lastmod>
+<loc>https://geoffrey.gueret.org/projects/</loc>
+<lastmod>2020-01-09T20:05:22-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/2020/01/05/un-load-balancer-dynamique-avec-traefik-et-docker-swarm/</loc>
+<loc>https://geoffrey.gueret.org/2020/01/05/un-load-balancer-dynamique-avec-traefik-et-docker-swarm/</loc>
 <lastmod>2020-01-05T21:48:00+01:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.tech/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</loc>
+<loc>https://geoffrey.gueret.org/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</loc>
 <lastmod>2018-12-12T23:14:00+01:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
