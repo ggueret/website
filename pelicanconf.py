@@ -29,6 +29,9 @@ SOCIAL = (
     ('Malt', 'https://www.malt.fr/profile/geoffreygueret', open('content/extras/social/malt.svg').read()),
 )
 
+# Hosting widget
+HOSTING_NAME = "localhost"
+
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing

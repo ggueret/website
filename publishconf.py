@@ -23,3 +23,6 @@ DELETE_OUTPUT_DIRECTORY = True
 
 #DISQUS_SITENAME = ""
 GOOGLE_ANALYTICS = 'UA-138276383-2'
+
+# Hosting widget
+HOSTING_NAME, HOSTING_URL = "GitHub Pages", "https://pages.github.com/"
