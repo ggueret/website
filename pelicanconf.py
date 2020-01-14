@@ -22,15 +22,12 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
-
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (
+    ('GitHub', 'https://github.com/ggueret', open('content/extras/social/github.svg').read()),
+    ('LinkedIn', 'https://www.linkedin.com/in/ggueret/', open('content/extras/social/linkedin.svg').read()),
+    ('Malt', 'https://www.malt.fr/profile/geoffreygueret', open('content/extras/social/malt.svg').read()),
+)
 
 DEFAULT_PAGINATION = 10
 
@@ -98,6 +95,6 @@ SITEMAP = {
     }
 }
 
-# Disable "authors" and "categories" indexes pages
+# Disable "authors" and "categories" pages
 DIRECT_TEMPLATES = ["index", "tags", "archives"]
 DELETE_OUTPUT_DIRECTORY = True
