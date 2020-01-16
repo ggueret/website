@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://geoffrey.gueret.org/</loc>
-<lastmod>2020-01-10T01:18:51-00:00</lastmod>
+<lastmod>2020-01-16T13:24:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://geoffrey.gueret.org/tags/</loc>
-<lastmod>2020-01-10T01:18:51-00:00</lastmod>
+<lastmod>2020-01-16T13:24:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://geoffrey.gueret.org/archives/</loc>
-<lastmod>2020-01-10T01:18:51-00:00</lastmod>
+<lastmod>2020-01-16T13:24:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://geoffrey.gueret.org/about/</loc>
-<lastmod>2020-01-10T01:18:51-00:00</lastmod>
+<lastmod>2020-01-16T13:24:41-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://geoffrey.gueret.org/projects/</loc>
-<lastmod>2020-01-10T01:18:51-00:00</lastmod>
+<lastmod>2020-01-16T13:24:41-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
