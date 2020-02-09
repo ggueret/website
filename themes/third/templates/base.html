@@ -52,7 +52,7 @@
 			{% endblock content %}
 		</div>
 		<footer id="footer" role="contentinfo">
-			<p><small>&copy; Copyright 2019 - {{ AUTHOR }}<br>Contenu généré avec <a href="https://blog.getpelican.com/">Pelican</a>{% if HOSTING_NAME %} et hébergé sur <a href="{{ HOSTING_URL or '#' }}">{{ HOSTING_NAME }}</a></small>{% endif %}</p>
+			<p><small>{% if COPYRIGHT_YEAR %}&copy; Copyright {{ COPYRIGHT_YEAR }} - {{ AUTHOR }}<br>{% endif %}Contenu généré avec <a href="https://blog.getpelican.com/">Pelican</a>{% if HOSTING_NAME %} et hébergé sur <a href="{{ HOSTING_URL or '#' }}">{{ HOSTING_NAME }}</a></small>{% endif %}</p>
 			{% if SOCIAL %}
 			<div class="social-icons">
 			{% for link in SOCIAL %}

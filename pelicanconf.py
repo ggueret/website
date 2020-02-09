@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import datetime
 
 AUTHOR = 'Geoffrey Guéret'
 SITENAME = 'Geoffrey Guéret'
@@ -31,6 +32,8 @@ SOCIAL = (
 
 # Hosting widget
 HOSTING_NAME = "localhost"
+
+COPYRIGHT_YEAR = datetime.date.today().year
 
 DEFAULT_PAGINATION = 10
 
