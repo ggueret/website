@@ -224,7 +224,7 @@ article header h1 {
 	font-size: 2rem;
 }
 
-article h1, article p.category {
+article header h1, article p.category {
 	display: inline;
 }
 
