@@ -44,7 +44,7 @@ body {
 	background: #efefef;
 }
 
-article p > code {
+article p > code, article li > code, article dd > code {
 	color: #cc6666;
 	padding: 0.4rem;
 	border-radius: 0.4rem;
@@ -87,10 +87,6 @@ ul.inline li {
 	padding: 0.6rem;
 }
 
-.text-muted {
-	color: #8e908c;
-}
-
 .crumb-golang::after {
 	content: "(Golang)";
 	margin-left: 0.3rem;
@@ -116,7 +112,7 @@ ul.inline li {
 }
 
 
-/*_ Header ________________________________________________________________________*/
+/*_ Header __________________________________________________________________*/
 
 #header {
 	background: linear-gradient(#efefef, #fafbfc);
@@ -177,7 +173,7 @@ float: right;
 }
 
 
-/*_ Main ________________________________________________________________________*/
+/*_ Main ____________________________________________________________________*/
 
 #main {
 	padding-top: 2rem;
@@ -185,7 +181,7 @@ float: right;
 }
 
 
-/*_ Footer ________________________________________________________________________*/
+/*_ Footer __________________________________________________________________*/
 #footer .social-icons svg {
 	width: 2rem;
 	height: 2rem;
@@ -218,13 +214,13 @@ float: right;
 }
 
 
-/*_ Articles ________________________________________________________________________*/
+/*_ Articles ________________________________________________________________*/
 
 article header h1 {
 	font-size: 2rem;
 }
 
-article h1, article p.category {
+section article h1, article header h1, article p.category {
 	display: inline;
 }
 
@@ -286,7 +282,7 @@ dt {
 }
 
 
-/*_ Responsiveness ________________________________________________________________________*/
+/*_ Responsiveness __________________________________________________________*/
 
 @media all and (min-width: 1024px) {
 	.container {
@@ -321,4 +317,28 @@ dt {
 		height: 3rem;
 
 	}
+}
+
+
+/*_  Helpers ________________________________________________________________*/
+
+.rounded {
+	border-radius: 50% !important;
+}
+
+.text-muted {
+	color: #8e908c;
+}
+
+.block-center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.crumbed {
+	border-radius: 10%;
+	border: 1px solid #dfdfdf;
+	padding: 0.5rem;
+	background-color: #fff;
 }

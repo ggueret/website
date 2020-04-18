@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138276383-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-138276383-2');
+	</script>
+	<meta charset="utf-8" />
+	<meta name="description" content="Cloisonner les dépendances de ses projets Python 3, sans paquet supplémentaire avec le module venv">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<title>Geoffrey Guéret - Cloisonner les dépendances de ses projets Python avec virtualenv</title>
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		<link rel="stylesheet" href="https://geoffrey.gueret.org/theme/style.min.css?bd22b3a9" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+
+
+	<link rel="canonical" href="https://geoffrey.gueret.org/drafts/cloisonner-les-dependances-de-ses-projets-python-avec-virtualenv/">
+</head>
+<body role="document">
+	<div id="page">
+		<header id="header">
+			<div class="container">
+				<h1><a href="https://geoffrey.gueret.org/">Geoffrey Guéret <strong></strong></a></h1>
+				<p id="sentence">french fries and <span id="buzzword">tech</span></p>
+				<nav role="navigation">
+					<ul>
+						<li><a class="active" href="https://geoffrey.gueret.org/" title="blog posts">Blog</a></li>
+						<li><a href="https://geoffrey.gueret.org/about/">A propos</a></li>
+						<li><a href="https://geoffrey.gueret.org/projects/">Projets</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="main" role="main">
+<div class="container">
+	<article role="article">
+		<header>
+			<h1><a href="https://geoffrey.gueret.org/drafts/cloisonner-les-dependances-de-ses-projets-python-avec-virtualenv/">Cloisonner les dépendances de ses projets Python avec virtualenv</a></h1><!--
+			--><time datetime="2020-01-23T22:00:00+01:00">Le Jeu 23 janvier 2020</time><!--
+			--><p class="category">Devel</p>
+		</header>
+		<div class="content">
+			<p>Travailler sur des projets Python variés implique de devoir installer des paquets externes comme <em>requests</em> ou <em>Flask</em>, eux-mêmes ayant leurs propres dépendances.
+Deux projets différents peuvent avoir besoin du même paquet mais à des versions différentes et là, ça coince.</p>
+<p><img alt="Boom" class="crumbed block-center" src="https://media.giphy.com/media/21PV0Su6USswD76iLv/giphy-downsized.gif"></p>
+<p>Pour éviter d'avoir à installer ces paquets globalement et de partager la même version partout au risque de ne pas voir certains projets fonctionner, Python intègre un <a href="https://docs.python.org/fr/3/library/venv.html">module de création d'environnement virtuel</a> depuis la version 3.3 qui lui même est activement maintenu par la communauté depuis quelques années.</p>
+<p>Ce module permet donc de cloisonner les dépendances desdits projets dans leurs répertoires respectifs. Et c'est plié en deux commandes pour créer et activer un environnement :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Créer un environnement virtuel dans le répertoire .virtualenv/</span>
+python3 -m venv .virtualenv/
+
+<span class="c1"># Activer le nouvel environnement virtuel</span>
+<span class="nb">source</span> .virtualenv/bin/activate
+</code></pre></div>
+
+
+<p>Un fois dans cet environnement, un prefix apparait dans le shell : <code>(.virtualenv)</code>, indiquant que c'est operationnel.
+Cette commande d'activation fait trois choses :</p>
+<ul>
+<li>Elle définie la variable d'environnement <code>VIRTUAL_ENV</code> vers le répertoire <code>.virtualenv/</code> courant,</li>
+<li>Elle préfixe le <code>$PATH</code> du shell avec <code>.virtualenv/bin</code> qui patch les commandes <code>python</code> et <code>pip</code>,</li>
+<li>Elle ajoute une commande <code>deactivate</code> au shell pour sortir de l'environnement virtuel courant.</li>
+</ul>
+<p>On peut maintenant lister la liste des paquets Python disponibles avec la commande :</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>.virtualenv<span class="o">)</span>$ pip freeze
+</code></pre></div>
+
+
+<p>Dans cet environnement nouvellement créé, il n'y a encore rien, et c'est normal.</p>
+<p>Par défaut les paquets du système ne sont pas ajouté à l'environnement. Pour toutefois partager les paquets du système à l'environnement virtuel, passer l'argument <code>--system-site-packages</code> lors de sa création.</p>
+<p>Pour sortir de l'environnement virtuel, on peut fermer le shell mais il y a aussi la commande :</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>.virtualenv<span class="o">)</span>$ deactivate
+</code></pre></div>
+
+
+<h1 id="utiliser-pip-et-pas-les-paquets-de-los">Utiliser pip et pas les paquets de l'OS<a class="headerlink" href="#utiliser-pip-et-pas-les-paquets-de-los" title="Permanent link"></a></h1>
+<p>Cette méthode possède donc un autre avantage, de ne pas utiliser les paquets du système dans l'environnement virtuel.
+Par exemple sous Debian ou Ubuntu, si l'on souhaite installer lxml, plutôt que de faire un <code>apt install python3-lxml</code> qui va figer la version du paquet sur une ancienne version, faire <code>pip install lxml</code>. La plupart des paquets Python ont binaires pre-compilés, grace aux wheels.</p>
+<p>Si toutefois la compilation est nécessaire, utiliser quelque chose comme :</p>
+<div class="highlight"><pre><span></span><code>apt-get build-dep python3-lxml <span class="o">&amp;&amp;</span> pip install lxml
+</code></pre></div>
+
+
+<p>Permet de télecharger les paquets nécessaires à la compilation et de faire le reste depuis pip et les répertoires <a href="https://pypi.org/">Python PyPI</a></p>
+<p>Si trois paquets devais être installés sur ces OSes ce serait <code>python3-venv</code>, <code>python3-setuptools</code> et <code>python3-wheel</code>.</p>
+<p>A partir d'ici, on peux utiliser pip pour ou même faire un <code>python setup.py devel</code> pour installer des paquets et travailler en local.</p>
+<h2 id="un-projet-existant">Un projet existant<a class="headerlink" href="#un-projet-existant" title="Permanent link"></a></h2>
+<p>Installation du répertoire courant via le setup.py en <a href="https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode">Development Mode</a>.</p>
+<div class="highlight"><pre><span></span><code>pip install -e .
+</code></pre></div>
+
+
+<h2 id="depuis-un-fichier-requirementstxt">Depuis un fichier requirements.txt<a class="headerlink" href="#depuis-un-fichier-requirementstxt" title="Permanent link"></a></h2>
+<p>Si le projet n'a pas de fichier <code>setup.py</code> et qu'un fichier <code>requirements.txt</code> est présent :</p>
+<div class="highlight"><pre><span></span><code>pip install -r requirements.txt
+</code></pre></div>
+
+
+<h1 id="usage-au-quotidien">Usage au quotidien<a class="headerlink" href="#usage-au-quotidien" title="Permanent link"></a></h1>
+<p>Il existe des wrappers à virtualenv, jamais essayé et ces dernieres regorgents de dépendances que je ne souhaite éviter d'installer à l'échelle du système.
+J'utiliser depuis longtemps deux aliases pour mon shell qui me permettent de gérer efficacement mes environnements.</p>
+<p>Le premier c'est <code>mkenv</code> pour <em>make env</em> qui va simplelement créer un environnement virtuel dans le répertoire courant, il est non déstructif : si un environnement existe déjà, rien n'est écrasé ou supprimé.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span> <span class="nv">mkenv</span><span class="o">=</span><span class="s2">&quot;python3 -m venv .virtualenv/ --prompt </span><span class="k">$(</span>basename <span class="nv">$PWD</span><span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+
+<p>Le second est <code>enenv</code> pour <em>enable env</em> qui active l'environnement du répertoire courant, si il existe :</p>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span> <span class="nv">enenv</span><span class="o">=</span><span class="s2">&quot;source .virtualenv/bin/activate&quot;</span>
+</code></pre></div>
+
+
+<h2 id="creation-dun-nouveau-projet-from-scratch">Création d'un nouveau projet from scratch<a class="headerlink" href="#creation-dun-nouveau-projet-from-scratch" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><code>mkdir ~/Projects/some
+<span class="nb">cd</span> ~/Projects/some
+git init
+mkenv <span class="o">&amp;&amp;</span> enenv
+</code></pre></div>
+
+
+<p>Il ne faut pas versionner ce répertoire <code>.virtualenv/</code> dans git, à rajouter dans le fichier <code>.gitignore</code>.</p>
+<h2 id="developpement-sur-un-projet-existant">Développement sur un projet existant<a class="headerlink" href="#developpement-sur-un-projet-existant" title="Permanent link"></a></h2>
+<p>Par exemple pour travailler sur la librairie <em>Flask</em> et lancer les tests unitaires.</p>
+<div class="highlight"><pre><span></span><code>git clone git@github.com:pallets/flask.git
+<span class="nb">cd</span> flask <span class="o">&amp;&amp;</span> mkenv <span class="o">&amp;&amp;</span> enenv
+<span class="o">(</span>flask<span class="o">)</span>$ pip install -e <span class="s1">&#39;.[dev]&#39;</span>
+<span class="o">(</span>flask<span class="o">)</span>$ pytest
+</code></pre></div>
+		</div>
+	</article>
+</div>
+		</div>
+		<footer id="footer" role="contentinfo">
+			<p><small>&copy; Copyright 2020 - Geoffrey Guéret<br>Contenu généré avec <a href="https://blog.getpelican.com/">Pelican</a> et hébergé sur <a href="https://pages.github.com/">GitHub Pages</a></small></p>
+			<div class="social-icons">
+				<span><a href="https://github.com/ggueret" title="GitHub"><svg style="fill: #333;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></span>
+				<span><a href="https://www.linkedin.com/in/ggueret/" title="LinkedIn"><svg width="32" height="32" style="fill: #4875B4;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></span>
+				<span><a href="https://www.malt.fr/profile/geoffreygueret" title="Malt"><svg width="32" height="32" style="fill: #ff396c;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.3 92.3"><path d="M79 14.2c-4.6-4.5-12-4.5-16.4 0L13.4 62.8C9 67.3 9 74.6 13.4 79c4.4 4.5 11.7 4.5 16.2 0l49-48.6c4.7-4.6 4.7-12 .3-16.4"></path><path d="M57.6 12.3C57.6 4.5 52.6 0 46 0 40 0 34.7 6 34.6 12.3L46 24l11.6-11.7z"></path><path d="M30.5 13.8c-2-2.2-5-3.5-8-3.5-3.2 0-6 1-8.3 3.2-4.6 4.4-4.7 11.7-.4 16.3l1.7 1.8h24.3l4-3.8-13.3-14z"></path><path d="M11.6 35c-3 0-6 1.3-8.2 3.4-2.2 2.2-3.4 5-3.4 8 0 3.2.6 11.7 13.2 11.7l23-22.8H11.7z"></path><path d="M34.6 80c0 7.8 5 12.3 11.5 12.3 6.4 0 11.6-6 11.7-12.3L46 68.3 34.6 80z"></path><path d="M78.4 63.7L76.7 62l-24.3-.2-4 4L62 79.5c4.4 4.6 11.7 4.7 16.3.4 4.6-4.4 4.7-11.7.4-16.3"></path><path d="M79.2 35.3L56 58.3h24.6c3.2 0 6-1 8.2-3.2 2.2-2 3.4-5 3.4-8 0-6.4-5-11.8-13-11.7"></path></svg></a></span>
+			</div>
+		</footer>
+	</div>
+	<script type="text/javascript" src="https://geoffrey.gueret.org/theme/main.min.js?48c81258"></script>
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</body>
+</html>
