@@ -1,23 +1,38 @@
 Slug: about
 Title: A propos
 
-Je me nomme Geoffrey Guéret, j'ai 31 ans et je vis en France. Passionné par les nouvelles technologies depuis toujours, j'ai tripatouillé mon premier ordinateur sous Windows NT _3.1_ lors de l'essort des minitels, des pageurs et des premiers téléphones mobiles.
+![Picture](https://www.gravatar.com/avatar/f59867037d04a40f3092cf2d4daa1758?s=200){: .rounded .crumbed .block-center}
 
-J'ai commencé le développement avec PHP _3_ et les normes CSS _2_ / XHTML _1.0_ pour faire le site de mon équipe de [jeux video](https://fr.wikipedia.org/wiki/Day_of_Defeat:_Source) en 2005.
-Peu après, ce fût mon premier contact avec GNU/Linux pour auto-héberger notre serveur de jeux, c'est à ce moment que j'ai découvert et depuis adopté Debian et sa [philosophie](https://www.debian.org/devel/join/nm-step3).
+J'ai 31 ans et je vis en France. Passionné par les nouvelles technologies depuis toujours, j'ai tripatouillé mon premier ordinateur sous Windows NT _3.1_ au temps des minitels, des pageurs et des premiers mobiles GSM.
 
-Issu de formations en alternance, j'ai quitté très tôt le cursus général. D'abord dans les métiers de l'éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'ai pu aborder tôt le monde du travail et cette réalité motivante des problèmes à résoudre.
+Issu de formations en alternance, d'abord en éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'écris du code en Python principalement depuis 7 ans, pour des besoins d'infrastructure jusqu'au web en passant par l'Internet des objets.
 
-J'ai adoré pratiquer le Python _2.7_ dans une société d'infogérence spécialisée dans l'hébergement Internet en 2011. Il m'accompagne depuis dans tous mes projets professionnels et personnels, s'adaptant aux différents contextes et cas d'usages en intégrant des paradigmes et modèles variés.
+J'ai à cœur le libre échange de l'information et des logiciels. Je participe bénévolement à [quelques-uns]({filename}projects.md).
 
-Sur mon temps libre, j'aime voyager loin et simplement et faire pousser mes plantes [comme un astronaute](https://fr.wikipedia.org/wiki/Hydroponie). J'ai à coeur le libre échange de l'information et des logiciels, notamment en contribuant à des projets open-source.
-J'ai une caisse à outils et je m'en sers à la maison et pour faire de la mécanique.
+Me trouver
+----------
 
-Me contacter
-------------
-
-Vous pouvez me trouver sur [GitHub](https://github.com/ggueret), [Bitbucket](https://bitbucket.org/ggueret/), [LinkedIn](https://www.linkedin.com/in/ggueret/) ou encore [PyPI](https://pypi.org/user/ggueret/).
+Vous pouvez me trouver sur [GitHub](https://github.com/ggueret), [Bitbucket](https://bitbucket.org/ggueret/), [LinkedIn](https://www.linkedin.com/in/ggueret/), [Malt](https://www.malt.fr/profile/geoffreygueret) ou encore [PyPI](https://pypi.org/user/ggueret/).
 
 ### Pour un futur projet
 
-Actuellement en poste chez [UbiCast](https://www.ubicast.eu/), un projet ou du conseil en tant que [freelance](https://www.malt.fr/profile/geoffreygueret) est envisageable.
+Une collaboration en tant que [freelance](https://www.malt.fr/profile/geoffreygueret) est envisageable en fonction de la nature des projets.  
+Je travaille depuis Meaux, en France.
+
+Mentions légales
+----------------
+
+### Société
+
+Pour des prestations de conseil, de service ou d'hébergement web, j'exerce avec ma société, **stocka SAS**.
+
+- **SIREN :** 83023914100013
+- **Code NAF :** 6311Z *(Traitement de données, hébergement et activités connexes)*
+
+### Hébergement
+
+Ce site est hébergé sur [GitHub Pages](https://help.github.com/en/github/site-policy/github-privacy-statement), un service fourni par GitHub, Inc.
+
+### Collecte de données
+
+Ce site utilise [Google Analytics](https://policies.google.com/privacy), un service d'analyse de statistiques fourni par Google, Inc.
