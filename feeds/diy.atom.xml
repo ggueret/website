@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Geoffrey Guéret - DIY</title><link href="https://geoffrey.gueret.org/" rel="alternate"></link><link href="https://geoffrey.gueret.org/feeds/diy.atom.xml" rel="self"></link><id>https://geoffrey.gueret.org/</id><updated>2021-02-09T20:39:00+01:00</updated><entry><title>Un babyphone HiFi connecté avec un Raspberry Pi</title><link href="https://geoffrey.gueret.org/2021/02/09/un-babyphone-hifi-connecte-avec-un-raspberry-pi/" rel="alternate"></link><published>2021-02-09T20:39:00+01:00</published><updated>2021-02-09T20:39:00+01:00</updated><author><name>Geoffrey Guéret</name></author><id>tag:geoffrey.gueret.org,2021-02-09:/2021/02/09/un-babyphone-hifi-connecte-avec-un-raspberry-pi/</id><summary type="html">&lt;p&gt;Je ne suis pas adepte des nouveaux dispositifs qui sont ultra connectés, parce que je ne sais pas où transitent mes données et à plus forte raison quand ça concerne mon enfant.
+Il me fallait donc mettre en place une solution que je puisse appréhender dans son ensemble : Un micro …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Je ne suis pas adepte des nouveaux dispositifs qui sont ultra connectés, parce que je ne sais pas où transitent mes données et à plus forte raison quand ça concerne mon enfant.
+Il me fallait donc mettre en place une solution que je puisse appréhender dans son ensemble : Un micro connecté, diffusé à travers mon réseau local.&lt;/p&gt;
+&lt;p&gt;Le &lt;a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/"&gt;Raspberry Pi 3 Model B+&lt;/a&gt; est un bon candidat pour environ 80€ on a un &lt;a href="https://www.kubii.fr/kits-raspberry-pi-3-et-3/2121-starter-kit-officiel-pi-3-b-kubii-3272496009998.html"&gt;pack complet avec une carte SD de 16Go&lt;/a&gt;, c'est largement suffisant. Il faut ajouter un microphone, par exemple un micro à pince USB pour environ 10 €. A noter que plus sa sensiblité &lt;em&gt;(exprimée en dB)&lt;/em&gt; sera elevée et plus sa zone de capture sera large.&lt;/p&gt;
+&lt;p&gt;Coté système de capture, les besoins sont essentiellements :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;de pouvoir faire de l'acquisition, via une prise JACK ou une carte externe&lt;/li&gt;
+&lt;li&gt;de transcoder un flux audio avec peu de latence et si possible en de multiples formats&lt;/li&gt;
+&lt;li&gt;de pouvoir diffuser ces flux à au moins 3 périphériques en simultanés&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Coté écoute, 3 types d'appareils :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Une Sonos ‎SYMFONISK&lt;/li&gt;
+&lt;li&gt;Une Google Chromecast Ultra&lt;/li&gt;
+&lt;li&gt;Le &lt;a href="https://www.videolan.org/vlc/"&gt;VLC media player&lt;/a&gt;, qui à l'avantage d'être multi-plateformes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dans le cas des deux en tête de liste, les librairies Python &lt;a href="https://github.com/SoCo/SoCo"&gt;SoCo&lt;/a&gt; et &lt;a href="https://github.com/home-assistant-libs/pychromecast"&gt;pychromecast&lt;/a&gt; permettent de lancer la lecture depuis une webradio. VLC gère nativement la lecture des flux réseau. Au niveau des formats, ils gèrent tous le codec Vorbis en mode débit binaire variable. Bonne nouvelle puisque ce codec assure une bonne restition sonore comparé au mp3, il est OSS et notamment utilisé par Spotify.&lt;/p&gt;
+&lt;p&gt;Configuration du Raspberry Pi&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;XKBMODEL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pc105&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# Generic 105-key PC (intl.)&lt;/span&gt;
+&lt;span class="nv"&gt;XKBLAYOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fr&amp;quot;&lt;/span&gt;    &lt;span class="c1"&gt;# French&lt;/span&gt;
+&lt;span class="nv"&gt;XKBVARIANT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mac&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# French (Macintosh)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="transcoder-et-diffuser-plusieurs-flux-en-simultane"&gt;Transcoder et diffuser plusieurs flux en simultané&lt;a class="headerlink" href="#transcoder-et-diffuser-plusieurs-flux-en-simultane" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ffmpeg -f alsa -i hw:1,0 &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a aac -f adts -content_type &lt;span class="s2"&gt;&amp;quot;audio/aac&amp;quot;&lt;/span&gt; -ab 128k icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.aac &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a flac -f ogg -content_type &lt;span class="s2"&gt;&amp;quot;application/ogg&amp;quot;&lt;/span&gt; -compression_level &lt;span class="m"&gt;10&lt;/span&gt; icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.flac.ogg &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a libmp3lame -f mp3 -content_type &lt;span class="s2"&gt;&amp;quot;audio/mp3&amp;quot;&lt;/span&gt; -qscale:a &lt;span class="m"&gt;10&lt;/span&gt; icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.mp3 &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a libvorbis -f ogg -content_type &lt;span class="s2"&gt;&amp;quot;application/ogg&amp;quot;&lt;/span&gt; -qscale:a &lt;span class="m"&gt;10&lt;/span&gt; icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.vorbis.ogg &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a libopus -f ogg -content_type &lt;span class="s2"&gt;&amp;quot;application/ogg&amp;quot;&lt;/span&gt; -ab 128k -compression_level &lt;span class="m"&gt;10&lt;/span&gt; -application lowdelay icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.opus.ogg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="DIY"></category></entry></feed>

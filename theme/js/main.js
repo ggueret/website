@@ -5,7 +5,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var buzzwords = [
 		"hydroponics",
 		"IoT",
-		"tech"
+		"tech",
+		"HiFi",
+		"houseplants",
+		"OSS",
+		"&#127828;",
+		"&#128021;",
+		"&#127793;"
 	];
 
 	var container = document.getElementById("buzzword")
@@ -18,8 +24,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		loop: false,
 		showCursor: true,
 		onComplete: function() {
-			document.querySelectorAll(".typed-cursor")[0].style.display = "none";
-			window.setTimeout(function(){container.textContent += "."}, 333);
+			window.setTimeout(function(){document.querySelectorAll(".typed-cursor")[0].style.display = "none"}, 333);
 		}
 	});
 });

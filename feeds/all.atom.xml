@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Geoffrey Guéret</title><link href="https://geoffrey.gueret.org/" rel="alternate"></link><link href="https://geoffrey.gueret.org/feeds/all.atom.xml" rel="self"></link><id>https://geoffrey.gueret.org/</id><updated>2018-12-12T23:14:00+01:00</updated><entry><title>Configurer un clavier Apple Mac sous Ubuntu</title><link href="https://geoffrey.gueret.org/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/" rel="alternate"></link><published>2018-12-12T23:14:00+01:00</published><updated>2018-12-12T23:14:00+01:00</updated><author><name>Geoffrey Guéret</name></author><id>tag:geoffrey.gueret.org,2018-12-12:/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</id><summary type="html">&lt;p&gt;Le clavier Mac n'est toujours pas reconnu correctement dans la version 18.04 LTS d'Ubuntu et ça dure depuis un moment déjà.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Geoffrey Guéret</title><link href="https://geoffrey.gueret.org/" rel="alternate"></link><link href="https://geoffrey.gueret.org/feeds/all.atom.xml" rel="self"></link><id>https://geoffrey.gueret.org/</id><updated>2021-02-09T20:39:00+01:00</updated><entry><title>Un babyphone HiFi connecté avec un Raspberry Pi</title><link href="https://geoffrey.gueret.org/2021/02/09/un-babyphone-hifi-connecte-avec-un-raspberry-pi/" rel="alternate"></link><published>2021-02-09T20:39:00+01:00</published><updated>2021-02-09T20:39:00+01:00</updated><author><name>Geoffrey Guéret</name></author><id>tag:geoffrey.gueret.org,2021-02-09:/2021/02/09/un-babyphone-hifi-connecte-avec-un-raspberry-pi/</id><summary type="html">&lt;p&gt;Je ne suis pas adepte des nouveaux dispositifs qui sont ultra connectés, parce que je ne sais pas où transitent mes données et à plus forte raison quand ça concerne mon enfant.
+Il me fallait donc mettre en place une solution que je puisse appréhender dans son ensemble : Un micro …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Je ne suis pas adepte des nouveaux dispositifs qui sont ultra connectés, parce que je ne sais pas où transitent mes données et à plus forte raison quand ça concerne mon enfant.
+Il me fallait donc mettre en place une solution que je puisse appréhender dans son ensemble : Un micro connecté, diffusé à travers mon réseau local.&lt;/p&gt;
+&lt;p&gt;Le &lt;a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/"&gt;Raspberry Pi 3 Model B+&lt;/a&gt; est un bon candidat pour environ 80€ on a un &lt;a href="https://www.kubii.fr/kits-raspberry-pi-3-et-3/2121-starter-kit-officiel-pi-3-b-kubii-3272496009998.html"&gt;pack complet avec une carte SD de 16Go&lt;/a&gt;, c'est largement suffisant. Il faut ajouter un microphone, par exemple un micro à pince USB pour environ 10 €. A noter que plus sa sensiblité &lt;em&gt;(exprimée en dB)&lt;/em&gt; sera elevée et plus sa zone de capture sera large.&lt;/p&gt;
+&lt;p&gt;Coté système de capture, les besoins sont essentiellements :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;de pouvoir faire de l'acquisition, via une prise JACK ou une carte externe&lt;/li&gt;
+&lt;li&gt;de transcoder un flux audio avec peu de latence et si possible en de multiples formats&lt;/li&gt;
+&lt;li&gt;de pouvoir diffuser ces flux à au moins 3 périphériques en simultanés&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Coté écoute, 3 types d'appareils :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Une Sonos ‎SYMFONISK&lt;/li&gt;
+&lt;li&gt;Une Google Chromecast Ultra&lt;/li&gt;
+&lt;li&gt;Le &lt;a href="https://www.videolan.org/vlc/"&gt;VLC media player&lt;/a&gt;, qui à l'avantage d'être multi-plateformes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dans le cas des deux en tête de liste, les librairies Python &lt;a href="https://github.com/SoCo/SoCo"&gt;SoCo&lt;/a&gt; et &lt;a href="https://github.com/home-assistant-libs/pychromecast"&gt;pychromecast&lt;/a&gt; permettent de lancer la lecture depuis une webradio. VLC gère nativement la lecture des flux réseau. Au niveau des formats, ils gèrent tous le codec Vorbis en mode débit binaire variable. Bonne nouvelle puisque ce codec assure une bonne restition sonore comparé au mp3, il est OSS et notamment utilisé par Spotify.&lt;/p&gt;
+&lt;p&gt;Configuration du Raspberry Pi&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;XKBMODEL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pc105&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# Generic 105-key PC (intl.)&lt;/span&gt;
+&lt;span class="nv"&gt;XKBLAYOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fr&amp;quot;&lt;/span&gt;    &lt;span class="c1"&gt;# French&lt;/span&gt;
+&lt;span class="nv"&gt;XKBVARIANT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mac&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# French (Macintosh)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="transcoder-et-diffuser-plusieurs-flux-en-simultane"&gt;Transcoder et diffuser plusieurs flux en simultané&lt;a class="headerlink" href="#transcoder-et-diffuser-plusieurs-flux-en-simultane" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ffmpeg -f alsa -i hw:1,0 &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a aac -f adts -content_type &lt;span class="s2"&gt;&amp;quot;audio/aac&amp;quot;&lt;/span&gt; -ab 128k icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.aac &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a flac -f ogg -content_type &lt;span class="s2"&gt;&amp;quot;application/ogg&amp;quot;&lt;/span&gt; -compression_level &lt;span class="m"&gt;10&lt;/span&gt; icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.flac.ogg &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a libmp3lame -f mp3 -content_type &lt;span class="s2"&gt;&amp;quot;audio/mp3&amp;quot;&lt;/span&gt; -qscale:a &lt;span class="m"&gt;10&lt;/span&gt; icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.mp3 &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a libvorbis -f ogg -content_type &lt;span class="s2"&gt;&amp;quot;application/ogg&amp;quot;&lt;/span&gt; -qscale:a &lt;span class="m"&gt;10&lt;/span&gt; icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.vorbis.ogg &lt;span class="se"&gt;\&lt;/span&gt;
+    -map &lt;span class="m"&gt;0&lt;/span&gt;:0 -c:a libopus -f ogg -content_type &lt;span class="s2"&gt;&amp;quot;application/ogg&amp;quot;&lt;/span&gt; -ab 128k -compression_level &lt;span class="m"&gt;10&lt;/span&gt; -application lowdelay icecast://source:&amp;lt;password&amp;gt;@127.0.0.1:8000/matteo.opus.ogg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="DIY"></category></entry><entry><title>Gérer ses dépendances Python depuis pip et pas apt ou yum</title><link href="https://geoffrey.gueret.org/2020/08/05/gerer-ses-dependances-python-depuis-pip-et-pas-apt-ou-yum/" rel="alternate"></link><published>2020-08-05T21:14:00+02:00</published><updated>2020-08-05T21:14:00+02:00</updated><author><name>Geoffrey Guéret</name></author><id>tag:geoffrey.gueret.org,2020-08-05:/2020/08/05/gerer-ses-dependances-python-depuis-pip-et-pas-apt-ou-yum/</id><content type="html"></content><category term="Python"></category></entry><entry><title>Cloisonner les dépendances de ses projets Python avec virtualenv</title><link href="https://geoffrey.gueret.org/2020/01/23/cloisonner-les-dependances-de-ses-projets-python-avec-virtualenv/" rel="alternate"></link><published>2020-01-23T22:00:00+01:00</published><updated>2020-01-23T22:00:00+01:00</updated><author><name>Geoffrey Guéret</name></author><id>tag:geoffrey.gueret.org,2020-01-23:/2020/01/23/cloisonner-les-dependances-de-ses-projets-python-avec-virtualenv/</id><summary type="html">&lt;p&gt;Travailler sur des projets Python variés implique de devoir installer des paquets externes comme par exemple &lt;em&gt;requests&lt;/em&gt; ou &lt;em&gt;Flask&lt;/em&gt;, eux-mêmes ayant leurs propres dépendances dans des versions spécifiques.
+Si deux projets (ou plus) ont besoin d'un même paquet mais à des versions différentes, ça coince.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Boom" class="crumbed block-center" src="https://media.giphy.com/media/21PV0Su6USswD76iLv/giphy-downsized.gif"&gt;&lt;/p&gt;
+&lt;p&gt;Pour éviter d'avoir à installer …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Travailler sur des projets Python variés implique de devoir installer des paquets externes comme par exemple &lt;em&gt;requests&lt;/em&gt; ou &lt;em&gt;Flask&lt;/em&gt;, eux-mêmes ayant leurs propres dépendances dans des versions spécifiques.
+Si deux projets (ou plus) ont besoin d'un même paquet mais à des versions différentes, ça coince.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Boom" class="crumbed block-center" src="https://media.giphy.com/media/21PV0Su6USswD76iLv/giphy-downsized.gif"&gt;&lt;/p&gt;
+&lt;p&gt;Pour éviter d'avoir à installer ces paquets globalement et de partager la même version partout au risque de ne pas voir certains projets fonctionner, Python intègre le module de création d'environnement virtuel &lt;a href="https://docs.python.org/fr/3/library/venv.html"&gt;venv&lt;/a&gt; depuis la version 3.3 qui est lui même activement maintenu par la communauté depuis quelques années.&lt;/p&gt;
+&lt;p&gt;Ce module permet donc de cloisonner les dépendances desdits projets dans leurs répertoires respectifs en y . Et c'est plié en deux commandes pour créer et activer un environnement :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Créer un environnement virtuel dans le répertoire .virtualenv/&lt;/span&gt;
+python3 -m venv .virtualenv/
+
+&lt;span class="c1"&gt;# Activer le nouvel environnement virtuel&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; .virtualenv/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Un fois dans cet environnement, un prefix apparait dans le shell : &lt;code&gt;(.virtualenv)&lt;/code&gt;, indiquant que c'est operationnel.
+Cette commande d'activation fait trois choses :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Elle définie la variable d'environnement &lt;code&gt;VIRTUAL_ENV&lt;/code&gt; vers le répertoire &lt;code&gt;.virtualenv/&lt;/code&gt; courant,&lt;/li&gt;
+&lt;li&gt;Elle préfixe le &lt;code&gt;$PATH&lt;/code&gt; du shell avec &lt;code&gt;.virtualenv/bin&lt;/code&gt; qui patch les commandes &lt;code&gt;python&lt;/code&gt; et &lt;code&gt;pip&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;Elle ajoute une commande &lt;code&gt;deactivate&lt;/code&gt; au shell pour sortir de l'environnement virtuel courant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On peut maintenant lister la liste des paquets Python disponibles avec la commande :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp gp-VirtualEnv"&gt;(.virtualenv)&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip freeze
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dans cet environnement nouvellement créé, il n'y a encore rien, et c'est normal.&lt;/p&gt;
+&lt;p&gt;Par défaut les paquets du système ne sont pas ajouté à l'environnement. Pour toutefois partager les paquets du système à l'environnement virtuel, passer l'argument &lt;code&gt;--system-site-packages&lt;/code&gt; lors de sa création.&lt;/p&gt;
+&lt;p&gt;Pour sortir de l'environnement virtuel, on peut fermer le shell mais il y a aussi la commande :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp gp-VirtualEnv"&gt;(.virtualenv)&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="utiliser-pip-et-pas-les-paquets-de-los"&gt;Utiliser pip et pas les paquets de l'OS&lt;a class="headerlink" href="#utiliser-pip-et-pas-les-paquets-de-los" title="Permanent link"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Cette méthode possède donc un autre avantage, de ne pas utiliser les paquets du système dans l'environnement virtuel.
+Par exemple sous Debian ou Ubuntu, si l'on souhaite installer lxml, plutôt que de faire un &lt;code&gt;apt install python3-lxml&lt;/code&gt; qui va figer la version du paquet sur une ancienne version, faire &lt;code&gt;pip install lxml&lt;/code&gt; qui va installer la dernière version disponible depuis PyPI.&lt;/p&gt;
+&lt;p&gt;La plupart des paquets Python ont binaires pre-compilés, grace aux wheels. Si toutefois la compilation est nécessaire, utiliser quelque chose comme :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$&lt;/span&gt; apt-get build-dep python3-lxml &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; pip install lxml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Permet de télecharger les paquets nécessaires à la compilation et de faire le reste depuis pip et les répertoires &lt;a href="https://pypi.org/"&gt;Python PyPI&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Si trois paquets devais être installés sur ces OSes ce serait &lt;code&gt;python3-venv&lt;/code&gt;, &lt;code&gt;python3-setuptools&lt;/code&gt; et &lt;code&gt;python3-wheel&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A partir d'ici, on peux utiliser pip pour ou même faire un &lt;code&gt;python setup.py devel&lt;/code&gt; pour installer des paquets et travailler en local.&lt;/p&gt;
+&lt;h2 id="un-projet-existant"&gt;Un projet existant&lt;a class="headerlink" href="#un-projet-existant" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Installation du répertoire courant via le setup.py en &lt;a href="https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode"&gt;Development Mode&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip install -e .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="depuis-un-fichier-requirementstxt"&gt;Depuis un fichier requirements.txt&lt;a class="headerlink" href="#depuis-un-fichier-requirementstxt" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si le projet n'a pas de fichier &lt;code&gt;setup.py&lt;/code&gt; et qu'un fichier &lt;code&gt;requirements.txt&lt;/code&gt; est présent :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip install -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="usage-au-quotidien"&gt;Usage au quotidien&lt;a class="headerlink" href="#usage-au-quotidien" title="Permanent link"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Il existe des wrappers à virtualenv, jamais essayé et ces dernieres regorgents de dépendances que je ne souhaite éviter d'installer à l'échelle du système.
+J'utiliser depuis longtemps deux aliases pour mon shell qui me permettent de gérer efficacement mes environnements.&lt;/p&gt;
+&lt;p&gt;Le premier c'est &lt;code&gt;mkenv&lt;/code&gt; pour &lt;em&gt;make env&lt;/em&gt; qui va simplelement créer un environnement virtuel dans le répertoire courant, il est non déstructif : si un environnement existe déjà, rien n'est écrasé ou supprimé.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;mkenv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python3 -m venv .virtualenv/ --prompt $(basename `pwd`)&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Notez l'utilisation de simples quotes ici pour désactiver l'interpolation des variables à l'initialisation de zsh.&lt;/p&gt;
+&lt;p&gt;Le second est &lt;code&gt;enenv&lt;/code&gt; pour &lt;em&gt;enable env&lt;/em&gt; qui active l'environnement du répertoire courant, si il existe :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;enenv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;source .virtualenv/bin/activate&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="creation-dun-nouveau-projet-from-scratch"&gt;Création d'un nouveau projet from scratch&lt;a class="headerlink" href="#creation-dun-nouveau-projet-from-scratch" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;mkdir ~/Projects/some&lt;/span&gt;
+&lt;span class="go"&gt;cd ~/Projects/some&lt;/span&gt;
+&lt;span class="go"&gt;git init&lt;/span&gt;
+&lt;span class="go"&gt;mkenv &amp;amp;&amp;amp; enenv&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Il ne faut pas versionner ce répertoire &lt;code&gt;.virtualenv/&lt;/code&gt; dans git, à rajouter dans le fichier &lt;code&gt;.gitignore&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="developpement-sur-un-projet-existant"&gt;Développement sur un projet existant&lt;a class="headerlink" href="#developpement-sur-un-projet-existant" title="Permanent link"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Par exemple, mon workflow pour travailler sur ce site web est le suivant :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git clone git@github.com:ggueret/website.git
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; website/
+&lt;span class="gp"&gt;$&lt;/span&gt; mkenv
+&lt;span class="gp"&gt;$&lt;/span&gt; enenv
+&lt;span class="gp gp-VirtualEnv"&gt;(website)&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip install -r requirements.txt
+&lt;span class="gp gp-VirtualEnv"&gt;(website)&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; make devserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Devel"></category></entry><entry><title>Configurer un clavier Apple Mac sous Ubuntu</title><link href="https://geoffrey.gueret.org/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/" rel="alternate"></link><published>2018-12-12T23:14:00+01:00</published><updated>2018-12-12T23:14:00+01:00</updated><author><name>Geoffrey Guéret</name></author><id>tag:geoffrey.gueret.org,2018-12-12:/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</id><summary type="html">&lt;p&gt;Le clavier Mac n'est toujours pas reconnu correctement dans la version 18.04 LTS d'Ubuntu et ça dure depuis un moment déjà.
 En cause, le module &lt;code&gt;hid_apple&lt;/code&gt; du kernel GNU/Linux qui ne distingue pas correctement la disposition du clavier, ça ne touche pas que Ubuntu mais bien l'ensemble des …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Le clavier Mac n'est toujours pas reconnu correctement dans la version 18.04 LTS d'Ubuntu et ça dure depuis un moment déjà.
 En cause, le module &lt;code&gt;hid_apple&lt;/code&gt; du kernel GNU/Linux qui ne distingue pas correctement la disposition du clavier, ça ne touche pas que Ubuntu mais bien l'ensemble des distributions.&lt;/p&gt;
 &lt;p&gt;Ca entraine des problèmes bien génants, les touches sont inversées ou n'ont pas le comportement attendu.

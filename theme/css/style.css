@@ -300,6 +300,12 @@ dt {
 	article time {
 		display: none;
 	}
+	section > article::before {
+		content: "~";
+		padding: 0 0.6rem;
+		color: #d6d6d6;
+		font-weight: 700;
+	}
 }
 
 @media all and (max-width: 500px) {
@@ -327,7 +333,7 @@ dt {
 }
 
 .text-muted {
-	color: #8e908c;
+	color: #8e908c !important;
 }
 
 .block-center {

@@ -10,11 +10,11 @@
 		gtag('config', 'UA-138276383-2');
 	</script>
 	<meta charset="utf-8" />
-	<meta name="description" content="Configuration d'un clavier filaire de Mac (avec pavé numérique) sous Ubuntu 18.04 LTS.">
+	<meta name="description" content="Les 10 étapes clés à suivre pour désengager efficacement vos développeurs">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-	<title>Geoffrey Guéret - Configurer un clavier Apple Mac sous Ubuntu</title>
+	<title>Geoffrey Guéret - Désengager efficacement vos développeurs en 10 étapes</title>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<link rel="stylesheet" href="https://geoffrey.gueret.org/theme/style.min.css?a0cbbd20" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -23,7 +23,7 @@
 	<link rel="manifest" href="/site.webmanifest">
 
 
-	<link rel="canonical" href="https://geoffrey.gueret.org/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/">
+	<link rel="canonical" href="https://geoffrey.gueret.org/drafts/desengager-efficacement-vos-developpeurs-en-10-etapes/">
 </head>
 <body role="document">
 	<div id="page">
@@ -44,57 +44,27 @@
 <div class="container">
 	<article role="article">
 		<header>
-			<h1><a href="https://geoffrey.gueret.org/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/">Configurer un clavier Apple Mac sous Ubuntu</a></h1><!--
-			--><time datetime="2018-12-12T23:14:00+01:00">Le Mer 12 décembre 2018</time><!--
-			--><p class="category">OSes</p>
+			<h1><a href="https://geoffrey.gueret.org/drafts/desengager-efficacement-vos-developpeurs-en-10-etapes/">Désengager efficacement vos développeurs en 10 étapes</a></h1><!--
+			--><time datetime="2020-06-24T14:00:00+02:00">Le Mer 24 juin 2020</time><!--
+			--><p class="category">Mood</p>
 		</header>
 		<div class="content">
-			<p>Le clavier Mac n'est toujours pas reconnu correctement dans la version 18.04 LTS d'Ubuntu et ça dure depuis un moment déjà.
-En cause, le module <code>hid_apple</code> du kernel GNU/Linux qui ne distingue pas correctement la disposition du clavier, ça ne touche pas que Ubuntu mais bien l'ensemble des distributions.</p>
-<p>Ca entraine des problèmes bien génants, les touches sont inversées ou n'ont pas le comportement attendu.
-Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. Dans le cas d'une autre distribution, adapter la configuration de la <a href="#methode-de-saisie">méthode de saisie</a> par l'utilitaire le plus adapté. </p>
-<h2 id="methode-de-saisie">Méthode de saisie<a class="headerlink" href="#methode-de-saisie" title="Permanent link"></a></h2>
-<p>Configurer les paramètres de saisie de texte, soit avec l'utiltaire "Saisie de texte" / "Keyboard Layouts" ou directement via le terminal dans <code>/etc/default/keyboard</code> en y définissant les valeurs suivantes :</p>
-<div class="highlight"><pre><span></span><code><span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span>  <span class="c1"># Generic 105-key PC (intl.)</span>
-<span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span>    <span class="c1"># French</span>
-<span class="nv">XKBVARIANT</span><span class="o">=</span><span class="s2">&quot;mac&quot;</span>  <span class="c1"># French (Macintosh)</span>
-</code></pre></div>
-
-
-<p>Puis appliquer les changements :</p>
-<div class="highlight"><pre><span></span><code>sudo dpkg-reconfigure -f noninteractive keyboard-configuration
-</code></pre></div>
-
-
-<h2 id="disposition-des-touches">Disposition des touches<a class="headerlink" href="#disposition-des-touches" title="Permanent link"></a></h2>
-<p>En Europe, on utilise habituellement le standard ISO pour nos claviers. Mais là il faut le désactiver.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">0</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/iso_layout
-</code></pre></div>
-
-
-<h2 id="invertion-des-touches-cmd-et-alt">Invertion des touches Cmd et Alt<a class="headerlink" href="#invertion-des-touches-cmd-et-alt" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">1</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/swap_opt_cmd
-</code></pre></div>
-
-
-<h2 id="comportement-des-touches-de-fonction">Comportement des touches de fonction<a class="headerlink" href="#comportement-des-touches-de-fonction" title="Permanent link"></a></h2>
+			<p>Trouver un (bon) développeur aujourd'hui c'est pas évident. Parce que la réalité c'est qu'un dev avec un peu d'experience recoit un dizaine d'offres d'emploi par mois et que les entreprises dégainent des conditions toujours plus avantageuses pour séduire.</p>
+<p>Par exemple, pour un même poste de développeur full-stack, la moyenne de rémuneration annuelle était de 40K il a a quatre ans, aujourd'hui c'est 70K, soit quasiment le double.</p>
+<p>Mais pourquoi l'industrie manque t-elle de candidats ?</p>
+<p>L'objectif pour les recruteurs est de trouver le candidat qui </p>
 <ul>
-<li><strong>0</strong> - Désactive complètement la touche <code>fn</code>.</li>
-<li><strong>1</strong> - Activé par défaut. La touche <code>F8</code> déclenche l'action play/pause. <code>fn + F8</code> déclenche <code>F8</code>.</li>
-<li><strong>2</strong> - Désactivé par défaut. La touche <code>F8</code> déclenche <code>F8</code>. <code>fn + F8</code> déclenche l'action play/pause.</li>
+<li><strong>Ne pas recrutez pas de junior</strong>: blah.</li>
+<li>Apparaitre sexy</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">2</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/fnmode
-</code></pre></div>
-
-
-<h2 id="persister-les-changements">Persister les changements<a class="headerlink" href="#persister-les-changements" title="Permanent link"></a></h2>
-<p>Pour que ces changements survivent au prochain reboot, il faut les persister dans modprobe et regénérer l'initramfs :</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> options hid_apple <span class="nv">iso_layout</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
-<span class="nb">echo</span> options hid_apple <span class="nv">swap_opt_cmd</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
-<span class="nb">echo</span> options hid_apple <span class="nv">fnmode</span><span class="o">=</span><span class="m">2</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
-
-sudo update-initramfs -u -k all
-</code></pre></div>
+<p>Voici un petit guide pour créer du désengagement chez vos développeurs,
+le but est de créer un produit largement inabouti et de déposer le bilan en quelques mois.</p>
+<ul>
+<li>Proposer des condi</li>
+<li>Ne faites pas confiance: </li>
+<li>Surveillez (1): </li>
+<li>Reclassez: </li>
+</ul>
 		</div>
 	</article>
 </div>
