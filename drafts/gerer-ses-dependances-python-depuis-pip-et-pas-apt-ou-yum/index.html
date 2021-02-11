@@ -10,11 +10,11 @@
 		gtag('config', 'UA-138276383-2');
 	</script>
 	<meta charset="utf-8" />
-	<meta name="description" content="Mise en place d'une radio avec Icecast et ffmpeg sous Raspbian Buster.">
+	<meta name="description" content="Site personnel d'un codeur autrefois devops.">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-	<title>Geoffrey Guéret - Un babyphone HiFi connecté avec un Raspberry Pi</title>
+	<title>Geoffrey Guéret - Gérer ses dépendances Python depuis pip et pas apt ou yum</title>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<link rel="stylesheet" href="https://geoffrey.gueret.org/theme/style.min.css?a0cbbd20" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -23,7 +23,7 @@
 	<link rel="manifest" href="/site.webmanifest">
 
 
-	<link rel="canonical" href="https://geoffrey.gueret.org/2021/02/09/un-babyphone-hifi-connecte-avec-un-raspberry-pi/">
+	<link rel="canonical" href="https://geoffrey.gueret.org/drafts/gerer-ses-dependances-python-depuis-pip-et-pas-apt-ou-yum/">
 </head>
 <body role="document">
 	<div id="page">
@@ -44,42 +44,12 @@
 <div class="container">
 	<article role="article">
 		<header>
-			<h1><a href="https://geoffrey.gueret.org/2021/02/09/un-babyphone-hifi-connecte-avec-un-raspberry-pi/">Un babyphone HiFi connecté avec un Raspberry Pi</a></h1><!--
-			--><time datetime="2021-02-09T20:39:00+01:00">Le Mar 09 février 2021</time><!--
-			--><p class="category">DIY</p>
+			<h1><a href="https://geoffrey.gueret.org/drafts/gerer-ses-dependances-python-depuis-pip-et-pas-apt-ou-yum/">Gérer ses dépendances Python depuis pip et pas apt ou yum</a></h1><!--
+			--><time datetime="2020-08-05T21:14:00+02:00">Le Mer 05 août 2020</time><!--
+			--><p class="category">Python</p>
 		</header>
 		<div class="content">
-			<p>Je ne suis pas adepte des nouveaux dispositifs qui sont ultra connectés, parce que je ne sais pas où transitent mes données et à plus forte raison quand ça concerne mon enfant.
-Il me fallait donc mettre en place une solution que je puisse appréhender dans son ensemble : Un micro connecté, diffusé à travers mon réseau local.</p>
-<p>Le <a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/">Raspberry Pi 3 Model B+</a> est un bon candidat pour environ 80€ on a un <a href="https://www.kubii.fr/kits-raspberry-pi-3-et-3/2121-starter-kit-officiel-pi-3-b-kubii-3272496009998.html">pack complet avec une carte SD de 16Go</a>, c'est largement suffisant. Il faut ajouter un microphone, par exemple un micro à pince USB pour environ 10 €. A noter que plus sa sensiblité <em>(exprimée en dB)</em> sera elevée et plus sa zone de capture sera large.</p>
-<p>Coté système de capture, les besoins sont essentiellements :</p>
-<ul>
-<li>de pouvoir faire de l'acquisition, via une prise JACK ou une carte externe</li>
-<li>de transcoder un flux audio avec peu de latence et si possible en de multiples formats</li>
-<li>de pouvoir diffuser ces flux à au moins 3 périphériques en simultanés</li>
-</ul>
-<p>Coté écoute, 3 types d'appareils :</p>
-<ul>
-<li>Une Sonos ‎SYMFONISK</li>
-<li>Une Google Chromecast Ultra</li>
-<li>Le <a href="https://www.videolan.org/vlc/">VLC media player</a>, qui à l'avantage d'être multi-plateformes</li>
-</ul>
-<p>Dans le cas des deux en tête de liste, les librairies Python <a href="https://github.com/SoCo/SoCo">SoCo</a> et <a href="https://github.com/home-assistant-libs/pychromecast">pychromecast</a> permettent de lancer la lecture depuis une webradio. VLC gère nativement la lecture des flux réseau. Au niveau des formats, ils gèrent tous le codec Vorbis en mode débit binaire variable. Bonne nouvelle puisque ce codec assure une bonne restition sonore comparé au mp3, il est OSS et notamment utilisé par Spotify.</p>
-<p>Configuration du Raspberry Pi</p>
-<div class="highlight"><pre><span></span><code><span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span>  <span class="c1"># Generic 105-key PC (intl.)</span>
-<span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span>    <span class="c1"># French</span>
-<span class="nv">XKBVARIANT</span><span class="o">=</span><span class="s2">&quot;mac&quot;</span>  <span class="c1"># French (Macintosh)</span>
-</code></pre></div>
-
-
-<h2 id="transcoder-et-diffuser-plusieurs-flux-en-simultane">Transcoder et diffuser plusieurs flux en simultané<a class="headerlink" href="#transcoder-et-diffuser-plusieurs-flux-en-simultane" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code>ffmpeg -f alsa -i hw:1,0 <span class="se">\</span>
-    -map <span class="m">0</span>:0 -c:a aac -f adts -content_type <span class="s2">&quot;audio/aac&quot;</span> -ab 128k icecast://source:&lt;password&gt;@127.0.0.1:8000/matteo.aac <span class="se">\</span>
-    -map <span class="m">0</span>:0 -c:a flac -f ogg -content_type <span class="s2">&quot;application/ogg&quot;</span> -compression_level <span class="m">10</span> icecast://source:&lt;password&gt;@127.0.0.1:8000/matteo.flac.ogg <span class="se">\</span>
-    -map <span class="m">0</span>:0 -c:a libmp3lame -f mp3 -content_type <span class="s2">&quot;audio/mp3&quot;</span> -qscale:a <span class="m">10</span> icecast://source:&lt;password&gt;@127.0.0.1:8000/matteo.mp3 <span class="se">\</span>
-    -map <span class="m">0</span>:0 -c:a libvorbis -f ogg -content_type <span class="s2">&quot;application/ogg&quot;</span> -qscale:a <span class="m">10</span> icecast://source:&lt;password&gt;@127.0.0.1:8000/matteo.vorbis.ogg <span class="se">\</span>
-    -map <span class="m">0</span>:0 -c:a libopus -f ogg -content_type <span class="s2">&quot;application/ogg&quot;</span> -ab 128k -compression_level <span class="m">10</span> -application lowdelay icecast://source:&lt;password&gt;@127.0.0.1:8000/matteo.opus.ogg
-</code></pre></div>
+			
 		</div>
 	</article>
 </div>
