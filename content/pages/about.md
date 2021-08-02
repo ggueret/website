@@ -5,7 +5,7 @@ Title: A propos
 
 J'ai 33 ans et je vis en France. Passionné par les nouvelles technologies depuis toujours, j'ai tripatouillé mon premier ordinateur sous Windows NT _3.1_ au temps des minitels, des pageurs et des premiers mobiles GSM.
 
-Issu de formations en alternance, d'abord en éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'écris du code en Python principalement depuis 7 ans, pour des besoins d'infrastructure jusqu'au web en passant par l'Internet des objets.
+Issu de formations en alternance, d'abord en éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'écris du code en Python principalement depuis 9 ans, pour des besoins d'infrastructure jusqu'au web en passant par l'Internet des objets.
 
 J'ai à cœur le libre échange de l'information et des logiciels. Je participe bénévolement à [quelques-uns]({filename}projects.md).
 
