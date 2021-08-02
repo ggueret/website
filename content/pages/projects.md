@@ -4,6 +4,9 @@ Title: Projets
 Auteur
 ------
 
+[dropr.fr](https://www.dropr.fr/)
+: Most wanted tech products drops from french stores *(Django/VueJS)*
+
 [floralist/**botaxon**](https://github.com/floralist/botaxon){: .crumb-python}
 : A botanical Python taxonomic parser for (sub)species names.
 
