@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - Blog archives{% endblock %}
+{% block head %}
+{{ super() }}
+	<link rel="canonical" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">
+{% endblock head %}
+
 {% block content %}
 <div class="container">
 <section>

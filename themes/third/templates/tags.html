@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - Blog tags{% endblock %}
 {% block content %}
+{% block head %}
+{{ super() }}
+	<link rel="canonical" href="{{ SITEURL }}/{{ TAGS_URL }}">
+{% endblock head %}
+
 <div class="container">
 <section>
     <h1>Tags</h1>
