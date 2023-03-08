@@ -22,7 +22,7 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 #DISQUS_SITENAME = ""
-GOOGLE_ANALYTICS = 'UA-138276383-2'
+GOOGLE_ANALYTICS = '311949645'
 
 # Hosting widget
 HOSTING_NAME, HOSTING_URL = "GitHub Pages", "https://pages.github.com/"
