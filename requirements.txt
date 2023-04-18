@@ -1,7 +1,7 @@
-html5validator==0.3.3
+html5validator==0.4.2
 webassets==2.0
-git+https://github.com/Python-Markdown/markdown.git@6651746#egg=Markdown
-pelican==4.2.0
+Markdown==3.4.3
+pelican==4.8.0
 cssmin==0.2.0
-jsmin==2.2.2
-ghp-import==0.5.5
+jsmin==3.0.1
+ghp-import==2.1.0
