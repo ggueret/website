@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
 	<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=311949645"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VQWSWVRMM1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', '311949645');
+		gtag('config', 'G-VQWSWVRMM1');
 	</script>
 	<meta charset="utf-8" />
 	<meta name="description" content="Configuration d'un clavier filaire de Mac (avec pavé numérique) sous Ubuntu 18.04 LTS.">
@@ -54,27 +54,23 @@ En cause, le module <code>hid_apple</code> du kernel GNU/Linux qui ne distingue 
 Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. Dans le cas d'une autre distribution, adapter la configuration de la <a href="#methode-de-saisie">méthode de saisie</a> par l'utilitaire le plus adapté. </p>
 <h2 id="methode-de-saisie">Méthode de saisie<a class="headerlink" href="#methode-de-saisie" title="Permanent link"></a></h2>
 <p>Configurer les paramètres de saisie de texte, soit avec l'utiltaire "Saisie de texte" / "Keyboard Layouts" ou directement via le terminal dans <code>/etc/default/keyboard</code> en y définissant les valeurs suivantes :</p>
-<div class="highlight"><pre><span></span><code><span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span>  <span class="c1"># Generic 105-key PC (intl.)</span>
-<span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span>    <span class="c1"># French</span>
-<span class="nv">XKBVARIANT</span><span class="o">=</span><span class="s2">&quot;mac&quot;</span>  <span class="c1"># French (Macintosh)</span>
+<div class="highlight"><pre><span></span><code><span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span><span class="w">  </span><span class="c1"># Generic 105-key PC (intl.)</span>
+<span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span><span class="w">    </span><span class="c1"># French</span>
+<span class="nv">XKBVARIANT</span><span class="o">=</span><span class="s2">&quot;mac&quot;</span><span class="w">  </span><span class="c1"># French (Macintosh)</span>
 </code></pre></div>
-
 
 <p>Puis appliquer les changements :</p>
-<div class="highlight"><pre><span></span><code>sudo dpkg-reconfigure -f noninteractive keyboard-configuration
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg-reconfigure<span class="w"> </span>-f<span class="w"> </span>noninteractive<span class="w"> </span>keyboard-configuration
 </code></pre></div>
-
 
 <h2 id="disposition-des-touches">Disposition des touches<a class="headerlink" href="#disposition-des-touches" title="Permanent link"></a></h2>
 <p>En Europe, on utilise habituellement le standard ISO pour nos claviers. Mais là il faut le désactiver.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">0</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/iso_layout
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/sys/module/hid_apple/parameters/iso_layout
 </code></pre></div>
-
 
 <h2 id="invertion-des-touches-cmd-et-alt">Invertion des touches Cmd et Alt<a class="headerlink" href="#invertion-des-touches-cmd-et-alt" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">1</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/swap_opt_cmd
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/sys/module/hid_apple/parameters/swap_opt_cmd
 </code></pre></div>
-
 
 <h2 id="comportement-des-touches-de-fonction">Comportement des touches de fonction<a class="headerlink" href="#comportement-des-touches-de-fonction" title="Permanent link"></a></h2>
 <ul>
@@ -82,17 +78,16 @@ Les instructions contenues dans cet article sont valides pour Ubuntu et Debian. 
 <li><strong>1</strong> - Activé par défaut. La touche <code>F8</code> déclenche l'action play/pause. <code>fn + F8</code> déclenche <code>F8</code>.</li>
 <li><strong>2</strong> - Désactivé par défaut. La touche <code>F8</code> déclenche <code>F8</code>. <code>fn + F8</code> déclenche l'action play/pause.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="m">2</span> <span class="p">|</span> sudo tee /sys/module/hid_apple/parameters/fnmode
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/sys/module/hid_apple/parameters/fnmode
 </code></pre></div>
-
 
 <h2 id="persister-les-changements">Persister les changements<a class="headerlink" href="#persister-les-changements" title="Permanent link"></a></h2>
 <p>Pour que ces changements survivent au prochain reboot, il faut les persister dans modprobe et regénérer l'initramfs :</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> options hid_apple <span class="nv">iso_layout</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
-<span class="nb">echo</span> options hid_apple <span class="nv">swap_opt_cmd</span><span class="o">=</span><span class="m">0</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
-<span class="nb">echo</span> options hid_apple <span class="nv">fnmode</span><span class="o">=</span><span class="m">2</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/hid_apple.conf
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>options<span class="w"> </span>hid_apple<span class="w"> </span><span class="nv">iso_layout</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/modprobe.d/hid_apple.conf
+<span class="nb">echo</span><span class="w"> </span>options<span class="w"> </span>hid_apple<span class="w"> </span><span class="nv">swap_opt_cmd</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/modprobe.d/hid_apple.conf
+<span class="nb">echo</span><span class="w"> </span>options<span class="w"> </span>hid_apple<span class="w"> </span><span class="nv">fnmode</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/modprobe.d/hid_apple.conf
 
-sudo update-initramfs -u -k all
+sudo<span class="w"> </span>update-initramfs<span class="w"> </span>-u<span class="w"> </span>-k<span class="w"> </span>all
 </code></pre></div>
 		</div>
 	</article>
