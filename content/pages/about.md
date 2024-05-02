@@ -3,9 +3,9 @@ Title: A propos
 
 ![Picture](https://www.gravatar.com/avatar/f59867037d04a40f3092cf2d4daa1758?s=200){: .rounded .crumbed .block-center}
 
-J'ai 34 ans et je vis en France. Passionné par les nouvelles technologies depuis toujours, j'ai tripatouillé mon premier ordinateur sous Windows NT _3.1_ au temps des minitels, des pageurs et des premiers mobiles GSM.
+J'ai 35 ans et je vis en France. Passionné par les nouvelles technologies depuis toujours, j'ai tripatouillé mon premier ordinateur sous Windows NT _3.1_ au temps des minitels, des pageurs et des premiers mobiles GSM.
 
-Issu de formations en alternance, d'abord en éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'écris du code en Python principalement depuis 10 ans, pour des besoins d'infrastructure jusqu'au web en passant par l'Internet des objets.
+Issu de formations en alternance, d'abord en éléctrotechnique, puis avec une spécialisation en réseaux, systèmes et télécoms. J'écris du code en Python principalement depuis 12 ans, pour des besoins d'infrastructure jusqu'au web en passant par l'Internet des objets.
 
 J'ai à cœur le libre échange de l'information et des logiciels. Je participe bénévolement à [quelques-uns]({filename}projects.md).
 
@@ -16,18 +16,20 @@ Vous pouvez me trouver sur [GitHub](https://github.com/ggueret), [Bitbucket](htt
 
 ### Pour un futur projet
 
-Une collaboration en tant que [freelance](https://www.malt.fr/profile/geoffreygueret) est envisageable en fonction de la nature des projets.  
-Je travaille depuis Meaux, en France.
+Une collaboration en tant que freelance est envisageable en fonction de la nature des projets.
+
+Mon domaine de prédilection est l'accompagnement des start-ups, depuis le recrutement de profils techniques jusqu'à l'élaboration de l'experience développeur ou l'automatisation du déploiement. Fort de mon experience acquise dans [plusieurs start-ups à succès](https://www.linkedin.com/in/ggueret/details/experience/), depuis l'automatisation d'une infrastrucure réalisant plus de 6 millons de requêtes HTTP par jour chez [Pricing Assistant](https://contentsquare.com/pricing-assistant/) jusqu'au développement full-stack avec une forte affinité pour l'experience développeur et des compétences en management acquises avec le scale-up de 3 à 100 développeurs dans la [fintech Silvr](https://www.silvr.co/).
+
+J'ai également de l'experience dans l'administration de systèmes GNU/Linux orienté hébergement de données et de solides connaissances dans les équipement réseaux, notamment spécialisée en fourniture de services et d'accès Internet.
+
+Vous pouvez me trouver sur [Malt](https://www.malt.fr/profile/geoffreygueret) pour une courte mission, autrement sur [GitHub](https://github.com/ggueret) ou encore [LinkedIn](https://www.linkedin.com/in/ggueret/).
 
 Mentions légales
 ----------------
 
 ### Société
 
-Pour des prestations de conseil, de service ou d'hébergement web, j'exerce avec ma société, **stocka SAS**.
-
-- **SIREN :** 83023914100013
-- **Code NAF :** 6311Z *(Traitement de données, hébergement et activités connexes)*
+J'exerce depuis Meaux avec mon entreprise ayant pour SIREN [**987 626 439**](https://annuaire-entreprises.data.gouv.fr/entreprise/geoffrey-gueret-987626439) <small>(APE 62.01Z)</small>.
 
 ### Hébergement
 
