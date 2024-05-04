@@ -4,42 +4,42 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://geoffrey.gueret.org/</loc>
-<lastmod>2024-05-02T12:48:21-00:00</lastmod>
+<loc>https://geoffrey.gueret.fr/</loc>
+<lastmod>2024-05-04T12:50:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.org/tags/</loc>
-<lastmod>2024-05-02T12:48:21-00:00</lastmod>
+<loc>https://geoffrey.gueret.fr/tags/</loc>
+<lastmod>2024-05-04T12:50:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.org/archives/</loc>
-<lastmod>2024-05-02T12:48:21-00:00</lastmod>
+<loc>https://geoffrey.gueret.fr/archives/</loc>
+<lastmod>2024-05-04T12:50:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.org/about/</loc>
-<lastmod>2024-05-02T12:48:21-00:00</lastmod>
+<loc>https://geoffrey.gueret.fr/about/</loc>
+<lastmod>2024-05-04T12:50:57-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.org/projects/</loc>
-<lastmod>2024-05-02T12:48:21-00:00</lastmod>
+<loc>https://geoffrey.gueret.fr/projects/</loc>
+<lastmod>2024-05-04T12:50:57-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://geoffrey.gueret.org/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</loc>
+<loc>https://geoffrey.gueret.fr/2018/12/12/configurer-un-clavier-apple-mac-sous-ubuntu/</loc>
 <lastmod>2018-12-12T23:14:00+01:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
