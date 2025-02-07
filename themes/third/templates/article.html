@@ -18,6 +18,7 @@
 			--><p class="category">{{ article.category }}</p>
 		</header>
 		<div class="content">
+			{% if article.cover %}<img class="cover" src="{{ SITEURL }}/{{ article.cover }}" />{% endif %}
 			{{ article.content }}
 		</div>
 	</article>

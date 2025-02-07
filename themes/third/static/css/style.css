@@ -259,6 +259,15 @@ article header p.category {
 	margin: 0;
 }
 
+article img.cover {
+	display: block;
+	width: 100%;
+	opacity: 75%;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 dt {
 	font-weight: 500;
 }
