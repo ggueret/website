@@ -1,20 +1,17 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
-import datetime
+from datetime import datetime
 
-AUTHOR = 'Geoffrey Guéret'
-SITENAME = 'Geoffrey Guéret'
-SITEURL = ''
+AUTHOR = "Geoffrey Guéret"
+SITENAME = "Geoffrey Guéret"
+SITEURL = ""
 SITEDESC = "Site personnel d'un codeur autrefois devops."
 # ensure correct length of the site description meta for mobile devices
 assert len(SITEDESC) <= 120
 
-PATH = 'content'
+PATH = "content"
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = "Europe/Paris"
 
-DEFAULT_LANG = 'fr'
+DEFAULT_LANG = "fr"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -25,22 +22,17 @@ AUTHOR_FEED_RSS = None
 
 # Social widget
 SOCIAL = (
-    ('GitHub', 'https://github.com/ggueret', open('content/extras/social/github.svg').read()),
-    ('LinkedIn', 'https://www.linkedin.com/in/ggueret/', open('content/extras/social/linkedin.svg').read()),
-    ('Malt', 'https://www.malt.fr/profile/geoffreygueret', open('content/extras/social/malt.svg').read()),
+    ("GitHub", "https://github.com/ggueret", open("content/extras/social/github.svg").read()),
+    ("LinkedIn", "https://www.linkedin.com/in/ggueret/", open("content/extras/social/linkedin.svg").read()),
+    ("Malt", "https://www.malt.fr/profile/geoffreygueret", open("content/extras/social/malt.svg").read()),
 )
 
-# Hosting widget
-HOSTING_NAME = "localhost"
-
-COPYRIGHT_YEAR = datetime.date.today().year
-
 DEFAULT_PAGINATION = 10
-
-# Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
-# CUSTOMS
+# Custom settings
+HOSTING_NAME = "localhost"
+COPYRIGHT_YEAR = datetime.date.today().year
 THEME = "themes/third"
 
 STATIC_PATHS = ("extras",)

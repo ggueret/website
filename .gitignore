@@ -1,6 +1,6 @@
-.vscode/
-.virtualenv/
-output/
 __pycache__/
 .DS_Store
+.virtualenv/
+.vscode/
 *.egg-info/
+output/
