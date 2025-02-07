@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 AUTHOR = "Geoffrey Guéret"
 SITENAME = "Geoffrey Guéret"
@@ -32,7 +32,7 @@ RELATIVE_URLS = True
 
 # Custom settings
 HOSTING_NAME = "localhost"
-COPYRIGHT_YEAR = datetime.date.today().year
+COPYRIGHT_YEAR = date.today().year
 THEME = "themes/third"
 
 STATIC_PATHS = ("extras",)
